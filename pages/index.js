@@ -1,21 +1,48 @@
-import Link from "next/link";
+import { withSessionSsr } from "./lib/config/withSession";
+import { statusCheck } from "../helpers/statusCheck";
+import { useRouter } from "next/router";
 
 export default Home;
 
-function Home() {
+function Home({ user }) {
+  const router = useRouter();
+
+  const logout = async () => {
+    fetch("/api/logout", {
+      method: "GET",
+    })
+      .then(statusCheck)
+      .then(() => {
+        console.log("Logout");
+        router.push("/account/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    // <div className="p-4">
-    //   <div className="container">
-    //     <h1>Hi {userService.userValue?.firstName}!</h1>
-    //     <p>You&apos;re logged in with Next.js & JWT!!</p>
-    //     <p>
-    //       <Link href="/users">Manage Users</Link>
-    //     </p>
-    //   </div>
-    // </div>
     <div>
-      <Link href={"/account/login"}>Login</Link>
-      <Link href={"/account/register"}>Register</Link>
+      <h1>Hello {user.username}</h1>
+      <p>Secret Content</p>
+      <button onClick={logout}>logout</button>
     </div>
   );
 }
+
+export const getServerSideProps = withSessionSsr(async ({ req, res }) => {
+  const user = req.session.user;
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/account/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { user },
+  };
+});
