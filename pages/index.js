@@ -1,5 +1,5 @@
 import { withSessionSsr } from "./lib/config/withSession";
-import { statusCheck } from "../helpers/statusCheck";
+import { statusCheck } from "@/helpers/statusCheck";
 import { useRouter } from "next/router";
 
 export default Home;

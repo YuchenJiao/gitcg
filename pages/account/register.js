@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { statusCheck } from "../../helpers/statusCheck";
-import { Layout } from "../../component/account/Layout";
+import { statusCheck } from "@/helpers/statusCheck";
+import { Layout } from "@/components/account/Layout";
 
 export default Register;
 
