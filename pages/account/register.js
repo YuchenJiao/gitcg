@@ -80,13 +80,17 @@ function Register() {
                 type="text"
                 className="form-control"
               />
-              <ul>
-                <li>
-                  <div className="text-danger">
-                    {errors.username &&
-                      "Username should be at least 6 characters long"}
-                  </div>
-                </li>
+              <ul className="text-danger">
+                {errors.username && (
+                  <>
+                    <li>
+                      <div>
+                        {errors.username &&
+                          "Username should be at least 6 characters long"}
+                      </div>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
             <div className="mb-3">
@@ -102,37 +106,41 @@ function Register() {
                 type="password"
                 className="form-control"
               />
-              <ul>
-                <li>
-                  <div className="text-danger">
-                    {errors.password &&
-                      "The password should be at least 8 characters long"}
-                  </div>
-                </li>
-                <li>
-                  <div className="text-danger">
-                    {errors.password &&
-                      "The password should have at least one uppercase letter"}
-                  </div>
-                </li>
-                <li>
-                  <div className="text-danger">
-                    {errors.password &&
-                      "The password should have at least one lowercase letter"}
-                  </div>
-                </li>
-                <li>
-                  <div className="text-danger">
-                    {errors.password &&
-                      "The password should have at least one digit"}
-                  </div>
-                </li>
-                <li>
-                  <div className="text-danger">
-                    {errors.password &&
-                      "The password should have at least one special character"}
-                  </div>
-                </li>
+              <ul className="text-danger">
+                {errors.password && (
+                  <>
+                    <li>
+                      <div>
+                        {errors.password &&
+                          "The password should be at least 8 characters long"}
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        {errors.password &&
+                          "The password should have at least one uppercase letter"}
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        {errors.password &&
+                          "The password should have at least one lowercase letter"}
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        {errors.password &&
+                          "The password should have at least one digit"}
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        {errors.password &&
+                          "The password should have at least one special character"}
+                      </div>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
             <button type="submit" className="btn btn-primary">

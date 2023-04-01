@@ -27,7 +27,7 @@ function Login() {
       .then((res) => res.json())
       .then((text) => {
         console.log(text);
-        router.push("/");
+        router.push("/private");
       })
       .catch((err) => {
         console.log(err);

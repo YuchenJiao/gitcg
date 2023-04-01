@@ -1,6 +1,9 @@
 import { MongoClient } from "mongodb";
 
-export default handler;
+import { withSessionRoute } from "pages/lib/config/withSession";
+
+// export default handler;
+export default withSessionRoute(handler);
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -27,14 +30,19 @@ async function handler(req, res) {
       }
       client.close();
       if (isCorrectUser) {
+        req.session.user = {
+          username: username,
+          isAdmin: true,
+        };
+        await req.session.save();
         res.status(200).json({
-              response: {
-                data: {
-                  msg: "Login succeed",
-                },
-                code: 200,
-              },
-            });
+          response: {
+            data: {
+              msg: "Login succeed",
+            },
+            code: 200,
+          },
+        });
       } else {
         res.status(401).json({
           response: {
