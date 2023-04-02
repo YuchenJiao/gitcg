@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { statusCheck } from "@/helpers/statusCheck";
-import { Layout } from "@/components/account/Layout";
 
 export default Login;
 
@@ -38,43 +37,41 @@ function Login() {
   }
 
   return (
-    <Layout>
-      <div className="card">
-        <h1 className="card-header">Login</h1>
-        <div className="card-body">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-3">
-              <label className="form-label">Username</label>
-              <input
-                {...register("username", {
-                  required: true,
-                })}
-                placeholder="Username"
-                type="text"
-                className="form-control"
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Password</label>
-              <input
-                {...register("password", {
-                  required: true,
-                })}
-                placeholder="Password"
-                name="password"
-                type="password"
-                className="form-control"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-            <Link href="/account/register" className="btn btn-link">
-              Register
-            </Link>
-          </form>
-        </div>
+    <div className="card">
+      <h1 className="card-header">Login</h1>
+      <div className="card-body">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label className="form-label">Username</label>
+            <input
+              {...register("username", {
+                required: true,
+              })}
+              placeholder="Username"
+              type="text"
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input
+              {...register("password", {
+                required: true,
+              })}
+              placeholder="Password"
+              name="password"
+              type="password"
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
+          <Link href="/account/register" className="btn btn-link">
+            Register
+          </Link>
+        </form>
       </div>
-    </Layout>
+    </div>
   );
 }

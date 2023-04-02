@@ -31,8 +31,9 @@ async function handler(req, res) {
       client.close();
       if (isCorrectUser) {
         req.session.user = {
-          username: username,
-          isAdmin: true,
+          id: result._id.toString(),
+          username: result.username,
+          decks: result.decks,
         };
         await req.session.save();
         res.status(200).json({

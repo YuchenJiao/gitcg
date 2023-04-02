@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { statusCheck } from "@/helpers/statusCheck";
-import { Layout } from "@/components/account/Layout";
 
 export default Register;
 
@@ -33,7 +32,7 @@ function Register() {
         alert("Register succeed");
         setTimeout(() => {
           router.push("/");
-        }, 1500);
+        }, 1000);
       })
       .catch((err) => {
         const errorMessage = JSON.parse(err.toString().substring(7));
@@ -60,98 +59,96 @@ function Register() {
   );
 
   return (
-    <Layout>
-      <div className="card">
-        <h1 className="card-header">Register</h1>
-        <div className="card-body">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-3">
-              <label className="form-label">Username</label>
-              <input
-                {...register("username", {
-                  required: true,
-                  validate: (input) => {
-                    // fetch api to find if input exists
-                  },
-                  minLength: 6,
-                  maxLength: 20,
-                })}
-                placeholder="Username"
-                type="text"
-                className="form-control"
-              />
-              <ul className="text-danger">
-                {errors.username && (
-                  <>
-                    <li>
-                      <div>
-                        {errors.username &&
-                          "Username should be at least 6 characters long"}
-                      </div>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Password</label>
-              <input
-                {...register("password", {
-                  required: true,
-                  validate: (input) => strongPwdChecker.test(input),
-                  maxLength: 20,
-                })}
-                placeholder="Password"
-                name="password"
-                type="password"
-                className="form-control"
-              />
-              <ul className="text-danger">
-                {errors.password && (
-                  <>
-                    <li>
-                      <div>
-                        {errors.password &&
-                          "The password should be at least 8 characters long"}
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        {errors.password &&
-                          "The password should have at least one uppercase letter"}
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        {errors.password &&
-                          "The password should have at least one lowercase letter"}
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        {errors.password &&
-                          "The password should have at least one digit"}
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        {errors.password &&
-                          "The password should have at least one special character"}
-                      </div>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Register
-            </button>
-            <Link href="/account/login" className="btn btn-link">
-              Cancel
-            </Link>
-          </form>
-        </div>
+    <div className="card">
+      <h1 className="card-header">Register</h1>
+      <div className="card-body">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label className="form-label">Username</label>
+            <input
+              {...register("username", {
+                required: true,
+                validate: (input) => {
+                  // fetch api to find if input exists
+                },
+                minLength: 6,
+                maxLength: 20,
+              })}
+              placeholder="Username"
+              type="text"
+              className="form-control"
+            />
+            <ul className="text-danger">
+              {errors.username && (
+                <>
+                  <li>
+                    <div>
+                      {errors.username &&
+                        "Username should be at least 6 characters long"}
+                    </div>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input
+              {...register("password", {
+                required: true,
+                validate: (input) => strongPwdChecker.test(input),
+                maxLength: 20,
+              })}
+              placeholder="Password"
+              name="password"
+              type="password"
+              className="form-control"
+            />
+            <ul className="text-danger">
+              {errors.password && (
+                <>
+                  <li>
+                    <div>
+                      {errors.password &&
+                        "The password should be at least 8 characters long"}
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      {errors.password &&
+                        "The password should have at least one uppercase letter"}
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      {errors.password &&
+                        "The password should have at least one lowercase letter"}
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      {errors.password &&
+                        "The password should have at least one digit"}
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      {errors.password &&
+                        "The password should have at least one special character"}
+                    </div>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Register
+          </button>
+          <Link href="/account/login" className="btn btn-link">
+            Cancel
+          </Link>
+        </form>
       </div>
-    </Layout>
+    </div>
   );
 }

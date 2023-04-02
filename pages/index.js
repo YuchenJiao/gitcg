@@ -1,10 +1,12 @@
 import { withSessionSsr } from "./lib/config/withSession";
 import { statusCheck } from "@/helpers/statusCheck";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { authenticate } from "@/helpers/authenticate";
 
 export default Home;
 
-function Home({ user }) {
+function Home({ uid, username, decks }) {
   const router = useRouter();
 
   const logout = async () => {
@@ -23,26 +25,23 @@ function Home({ user }) {
 
   return (
     <div>
-      <h1>Hello {user.username}</h1>
-      <p>Secret Content</p>
-      <button onClick={logout}>logout</button>
+      <h1 className="display-3">Hello {username}</h1>
+      <Link href={`/edit/DECKID`} className="btn btn-link">Edit Deck</Link>
+      <button onClick={logout} className="btn btn-primary">
+        logout
+      </button>
     </div>
   );
 }
 
 export const getServerSideProps = withSessionSsr(async ({ req, res }) => {
-  const user = req.session.user;
+  const auth = authenticate(req);
 
-  if (!user) {
-    return {
-      redirect: {
-        destination: "/account/login",
-        permanent: false,
-      },
-    };
+  if (!auth.isValid) {
+    return auth.action;
   }
 
   return {
-    props: { user },
+    props: { uid: user.id, username: user.username, decks: user.decks },
   };
 });
