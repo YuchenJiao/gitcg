@@ -26,7 +26,7 @@ function Home({ uid, username, decks }) {
   return (
     <div>
       <h1 className="display-3">Hello {username}</h1>
-      <Link href={`/edit/DECKID`} className="btn btn-link">Edit Deck</Link>
+      {/* <Link href={`/edit/DECKID`} className="btn btn-link">Edit Deck</Link> */}
       <button onClick={logout} className="btn btn-primary">
         logout
       </button>
@@ -41,7 +41,10 @@ export const getServerSideProps = withSessionSsr(async ({ req, res }) => {
     return auth.action;
   }
 
+  const user = req.session.user;
+
   return {
-    props: { uid: user.id, username: user.username, decks: user.decks },
+    // props: { uid: user.id, username: user.username, decks: user.decks },
+    props: { uid: user.id, username: user.username },
   };
 });
