@@ -1,0 +1,467 @@
+{
+  "ActionCard": {
+    "Equipment": {
+      "Artifact": [
+        "adventurers_bandana",
+        "archaic_petra",
+        "blizzard_strayer",
+        "broken_rimes_echo",
+        "crimson_witch_of_flames",
+        "deepwood_memories",
+        "exiles_circlet",
+        "gamblers_earrings",
+        "generals_ancient_helm",
+        "heart_of_depth",
+        "instructors_cap",
+        "laurel_coronet",
+        "lucky_dogs_silver_circlet",
+        "mask_of_solitude_basalt",
+        "ornate_kabuto",
+        "thundering_fury",
+        "thunder_summoners_crown",
+        "traveling_doctors_handkerchief",
+        "viridescent_venerer",
+        "viridescent_venerers_diadem",
+        "wine_stained_tricorne",
+        "witchs_scorching_hat"
+      ],
+      "Talent": [
+        "awakening",
+        "chaotic_entropy",
+        "cold_blooded_strike",
+        "crossfire",
+        "featherfall_judgement",
+        "floral_sidewinder",
+        "flowing_flame",
+        "glorious_season",
+        "grand_expectation",
+        "i_got_your_back",
+        "kanten_senmyou_blessing",
+        "lands_of_dandelion",
+        "lighting_storm",
+        "mirror_cage",
+        "naganohara_meteor_swarm",
+        "paid_in_full",
+        "pounding_surpurise",
+        "proliferating_spores",
+        "prophecy_of_submersion",
+        "shaken_not_purred",
+        "sin_of_pride",
+        "steady_breathing",
+        "stellar_predator",
+        "stonehide_reforged",
+        "strategic_reserve",
+        "streaming_surge",
+        "tamanooyas_casket",
+        "the_scent_remained",
+        "thundering_penance",
+        "transcendent_automaton",
+        "undivided_heart",
+        "wellspring_of_warlust"
+      ],
+      "Weapon": {
+        "Bow": ["raven_bow", "sacrificial_bow", "skyward_harp"],
+        "Catalyst": ["magic_guide", "sacrificial_fragments", "skyward_atlas"],
+        "Claymore": [
+          "sacrificial_greatsword",
+          "white_iron_greatsword",
+          "wolfs_gravestone"
+        ],
+        "Polearm": ["lithic_spear", "skyward_spine", "white_tassel"],
+        "Sword": [
+          "aquila_favonia",
+          "sacrificial_sword",
+          "travelers_handy_sword"
+        ]
+      }
+    },
+    "Event": {
+      "Dish": [
+        "adeptus_temptation",
+        "jueyun_guoba",
+        "lotus_flower_crisp",
+        "minty_meat_rolls",
+        "mondstadt_hash_brown",
+        "mushroom_pizza",
+        "northern_smoked_chicken",
+        "sweet_madame"
+      ],
+      "ElementalResonance": {
+        "Anemo": [
+          "elemental_resonance_impetuous_winds",
+          "elemental_resonance_woven_winds"
+        ],
+        "Cryo": [
+          "elemental_resonance_shattering_ice",
+          "elemental_resonance_woven_ice"
+        ],
+        "Dendro": [
+          "elemental_resonance_sprawling_greenery",
+          "elemental_resonance_woven_weeds"
+        ],
+        "Electro": [
+          "elemental_resonance_high_voltage",
+          "elemental_resonance_woven_thunder"
+        ],
+        "Geo": [
+          "elemental_resonance_enduring_rock",
+          "elemental_resonance_woven_stone"
+        ],
+        "Hydro": [
+          "elemental_resonance_soothing_water",
+          "elemental_resonance_woven_waters"
+        ],
+        "Pryo": [
+          "elemental_resonance_fervent_flames",
+          "elemental_resonance_woven_flames"
+        ]
+      },
+      "Other": [
+        "abyssal_summons",
+        "blessing_of_the_divine_relics_installation",
+        "calxs_arts",
+        "changing_shifts",
+        "guardians_oath",
+        "i_havent_lost_yet",
+        "leave_it_to_me",
+        "lightning_stiletto",
+        "master_of_weaponary",
+        "quick_knit",
+        "send_off",
+        "starsigns",
+        "strategize",
+        "the_bestest_travel_companion",
+        "toss_up",
+        "when_the_crane_returned"
+      ]
+    },
+    "Support": {
+      "Companion": [
+        "chang_the_ninth",
+        "chef_mao",
+        "ellin",
+        "iron_tongue_tian",
+        "katheryne",
+        "liben",
+        "liu_su",
+        "paimon",
+        "timaeus",
+        "timmie",
+        "tubbuy",
+        "wagner"
+      ],
+      "Item": ["nre", "parametric_transformer"],
+      "Location": [
+        "dawn_winery",
+        "favonius_cathedral",
+        "jade_chamber",
+        "knights_of_favonius_library",
+        "liyue_harbor_wharf",
+        "wangshu_inn"
+      ]
+    }
+  },
+  "Avatar": [
+    "barbara",
+    "bennett",
+    "chongyun",
+    "collei",
+    "cyno",
+    "diluc",
+    "diona",
+    "fatui_pryo_agent",
+    "fischl",
+    "ganyu",
+    "jadeplume_terrorshroom",
+    "jean",
+    "kaeya",
+    "kamisato_ayaka",
+    "keqing",
+    "maguu-kenki",
+    "mirror_maiden",
+    "mona",
+    "ningguang",
+    "noelle",
+    "razor",
+    "rhodeia_of_loch",
+    "stonehide_lawachurl",
+    "sucrose",
+    "xiangling",
+    "xingqiu",
+    "yoimiya"
+  ],
+  "Background": ["default", "inazuma", "liyue", "mondstadt"],
+  "CardBack": [
+    "adept",
+    "amethyst_lump",
+    "cecilia",
+    "dandelion_seed",
+    "dendrobium",
+    "electro_crystal",
+    "flaming_flower_stamen",
+    "glaze_lily",
+    "hydro_crystal_chunk",
+    "inazuma",
+    "legend",
+    "liyue",
+    "magical_crystal_chunk",
+    "mist_flower_corolla",
+    "mondstadt",
+    "origin",
+    "sumeru"
+  ],
+  "Character": [
+    "barbara",
+    "beidou",
+    "bennett",
+    "chongyun",
+    "collei",
+    "cyno",
+    "diluc",
+    "diona",
+    "fatui_pryo_agent",
+    "fischl",
+    "ganyu",
+    "jadeplume_terrorshroom",
+    "jean",
+    "kaeya",
+    "kamisato_ayaka",
+    "keqing",
+    "klee",
+    "maguu-kenki",
+    "mirror_maiden",
+    "mona",
+    "ningguang",
+    "noelle",
+    "razor",
+    "rhodeia_of_loch",
+    "sangonomiya_kokomi",
+    "stonehide_lawachurl",
+    "sucrose",
+    "xiangling",
+    "xingqiu",
+    "yoimiya"
+  ],
+  "Icon": {
+    "CardAssets": {
+      "Skills": {
+        "barbara": [
+          "let_the_show_begin",
+          "shining_miracle",
+          "whisper_of_water"
+        ],
+        "beidou": ["oceanborne", "stormbreaker", "tidecaller"],
+        "bennett": [
+          "fantastic_voyage",
+          "passion_overload",
+          "strike_of_fortune"
+        ],
+        "chongyun": [
+          "chonghuas_layered_frost",
+          "cloudparting_star",
+          "demonbane"
+        ],
+        "collei": ["floral_brush", "supplicants_bowmanship", "trumpcard_kitty"],
+        "cyno": [
+          "invokers_spear",
+          "lawful_enforcer",
+          "sacred_rite_wolfs_swiftness",
+          "secret_rite_chasmic_soulfarer"
+        ],
+        "diluc": ["dawn", "searing_onslaught", "tempered_sword"],
+        "diona": ["icy_paws", "ktzlein_style", "signature_mix"],
+        "fatui_pryo_agent": [
+          "blade_ablaze",
+          "prowl",
+          "stealth_master",
+          "thrust"
+        ],
+        "fischl": [
+          "bolts_of_dawnfall",
+          "midnight_phantasmagoria",
+          "nightrider"
+        ],
+        "ganyu": [
+          "celestial_shower",
+          "frostflake_arrow",
+          "liutian_archery",
+          "trail_of_the_qilin"
+        ],
+        "jadeplume_terrorshroom": [
+          "feather_spreading",
+          "majestic_dance",
+          "radical_vitality",
+          "volatile_spore_cloud"
+        ],
+        "jean": ["dandelion_breeze", "favonius_bladework", "gale_blade"],
+        "kaeya": ["ceremonial_bladework", "frostgnaw", "glacial_waltz"],
+        "kamisato_ayaka": [
+          "kamisato_art_hyouka",
+          "kamisato_art_kabuki",
+          "kamisato_art_senho",
+          "kamisato_art_soumetsu"
+        ],
+        "keqing": [
+          "starward_sword",
+          "stellar_restoration",
+          "yunlai_swordsmanship"
+        ],
+        "klee": ["jumpy_dumpty", "kaboom", "sparks_n_splash"],
+        "maguu-kenki": [
+          "blustering_blade",
+          "frosty_assault",
+          "ichimonji",
+          "pseudo_tengu_sweeper"
+        ],
+        "mirror_maiden": ["influx_blast", "rippled_reflection", "water_ball"],
+        "mona": [
+          "illusory_torrent",
+          "mirror_reflection_of_doom",
+          "ripple_of_fate",
+          "stellaris_phantasm"
+        ],
+        "ningguang": ["jade_screen", "sparkling_scatter", "starshatter"],
+        "noelle": ["breastplate", "favonius_bladework_maid", "sweeping_time"],
+        "razor": ["claw_and_thunder", "lightning_fang", "steel_fang"],
+        "rhodeia_of_loch": [
+          "oceanid_mimic_summoning",
+          "surge",
+          "the_myraid_wilds",
+          "tide_and_torrent"
+        ],
+        "sangonomiya_kokomi": [
+          "kurages_oath",
+          "nereids_ascension",
+          "the_shape_of_water"
+        ],
+        "stonehide_lawachurl": [
+          "infused_stonehide",
+          "movo_lawa",
+          "plama_lawa",
+          "upa_shato"
+        ],
+        "sucrose": [
+          "astable_anemohypostasis_creation_6308",
+          "forbidden_creation_isomer_75_type_ii",
+          "wind_spirit_creation"
+        ],
+        "xiangling": ["doughfu", "guoba_attack", "pyronado"],
+        "xingqiu": ["fatal_rainscreen", "guhua_style", "raincutter"],
+        "yoimiya": ["firework_flareup", "niwabi_firedance", "ryuukin_saxifrage"]
+      },
+      "Basic": {
+        "Assets": [
+          "card",
+          "card_border",
+          "character",
+          "energy",
+          "energy_empty",
+          "energy_full",
+          "hp"
+        ],
+        "Type": {
+          "Equipment": ["artifact", "talent", "weapon"],
+          "Event": ["food", "resonance"],
+          "Support": ["companion", "item", "location"],
+          "Weapon": [
+            "bow",
+            "catalyst",
+            "claymore",
+            "non_weapon",
+            "ploearm",
+            "sword"
+          ]
+        }
+      },
+      "GameBoard": [
+        "dice_opponent",
+        "dice_self",
+        "skill_background",
+        "time_clock_opponent",
+        "time_clock_self"
+      ],
+      "Status": {
+        "Character": [
+          "radical_vitality",
+          "artifact",
+          "talent",
+          "weapon",
+          "buff",
+          "attack_buff",
+          "debuff",
+          "defeat",
+          "attack_buff_clean",
+          "frozen",
+          "full",
+          "heal",
+          "time_shield"
+        ],
+        "Field": ["time_counter", "card_num", "counter", "time_shield", "heal"],
+        "Group": [
+          "buff",
+          "catalyzing_field",
+          "change_next",
+          "dendro_core",
+          "shield",
+          "time_shield"
+        ]
+      }
+    },
+    "Dice": [
+      "anemo",
+      "cryo",
+      "dendro",
+      "electro",
+      "geo",
+      "hydro",
+      "omni",
+      "pyro"
+    ],
+    "Element": [
+      "anemo",
+      "cryo",
+      "dendro",
+      "electro",
+      "geo",
+      "hydro",
+      "physical",
+      "pyro"
+    ],
+    "Token": [
+      "anemo",
+      "cryo",
+      "dendro",
+      "electro",
+      "geo",
+      "hydro",
+      "matching",
+      "none",
+      "omni",
+      "pyro",
+      "unaligned"
+    ]
+  },
+  "Summon": [
+    "bake_kurage",
+    "buring_flame",
+    "cryo_hilichurl_shooter",
+    "cuilein_anbar",
+    "dandelion_field",
+    "drunken_mist",
+    "electro_hilichurl_shooter",
+    "frostflake_seki_no_to",
+    "guoba",
+    "hilichurl_berserker",
+    "hydro_samachurl",
+    "large_wind_spirit",
+    "melody_loop",
+    "oceanid_mimic_ferret",
+    "oceanid_mimic_frog",
+    "oceanid_mimic_raptor",
+    "oz",
+    "reflection",
+    "sacred_cryo_pearl",
+    "shadowsword_galloping_frost",
+    "shadowsword_lone_gale"
+  ]
+}
