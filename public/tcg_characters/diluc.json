@@ -1,5 +1,4 @@
 {
-  "_id": 1301,
   "id": "diluc",
   "name": "Diluc",
   "title": "\"Dark Side of Dawn\" Diluc",
@@ -12,16 +11,8 @@
     "weapon": "Claymore",
     "faction": ["Mondstadt"],
     "talent_card": {
-      "_id": 3231,
       "id": "flowing_flame",
       "name": "Flowing Flame"
-    },
-    "source": ["Obtained from the initial deck"],
-    "character": {
-      "_id": 10000016,
-      "id": "diluc",
-      "name": "Diluc",
-      "rarity": 5
     }
   },
   "skills": [
@@ -29,55 +20,85 @@
       "id": "tempered_sword",
       "name": "Tempered Sword",
       "desc": "Deals 2 <span style=\"color:#FFFFFFFF\">Physical DMG</span>.",
-      "skillTag": ["Normal Attack"],
+      "skillTag": "Normal Attack",
       "points": [
         {
-          "_id": 1103,
           "id": "pyro",
           "type": "Pyro",
           "count": 1
         },
         {
-          "_id": 1109,
-          "id": "unaligned_element",
+          "id": "unaligned",
           "type": "Unaligned Element",
           "count": 2
         }
-      ]
+      ],
+      "effect": {
+        "damage": [{ "id": "physical", "type": "Physical", "amount": 2 }],
+        "heal": [{ "front": 0 }, { "back": 0 }],
+        "status": {
+          "elementalApplication": [],
+          "characterStatus": [],
+          "groupStatus": [],
+          "oppoStatus": [],
+          "energy": 1
+        },
+        "summon": []
+      }
     },
     {
       "id": "searing_onslaught",
       "name": "Searing Onslaught",
       "desc": "Deals 3 <span style=\"color:#FF9999FF\">Pyro DMG</span>. For the third use of this Skill each Round, deals +2 DMG.",
-      "skillTag": ["Elemental Skill"],
+      "skillTag": "Elemental Skill",
       "points": [
         {
-          "_id": 1103,
           "id": "pyro",
           "type": "Pyro",
           "count": 3
         }
-      ]
+      ],
+      "effect": {
+        "damage": [{ "id": "pyro", "type": "Pyro", "amount": 3 }],
+        "heal": [{ "front": 0 }, { "back": 0 }],
+        "status": {
+          "elementalApplication": [],
+          "characterStatus": [],
+          "groupStatus": [],
+          "oppoStatus": [],
+          "energy": 1
+        },
+        "summon": []
+      }
     },
     {
       "id": "dawn",
       "name": "Dawn",
       "desc": "Deals 8 <span style=\"color:#FF9999FF\">Pyro DMG</span>. This character gains <span style=\"color:#FFFFFFFF\">Pyro Infusion</span>.",
-      "skillTag": ["Elemental Burst"],
+      "skillTag": "Elemental Burst",
       "points": [
         {
-          "_id": 1103,
           "id": "pyro",
           "type": "Pyro",
           "count": 4
         },
         {
-          "_id": 1110,
           "id": "energy",
           "type": "Energy",
           "count": 3
         }
-      ]
+      ],
+      "effect": {
+        "damage": [{ "id": "pyro", "type": "Pyro", "amount": 8 }],
+        "heal": [{ "front": 0 }, { "back": 0 }],
+        "status": {
+          "elementalApplication": [],
+          "characterStatus": [],
+          "groupStatus": [],
+          "oppoStatus": []
+        },
+        "summon": []
+      }
     }
   ]
 }

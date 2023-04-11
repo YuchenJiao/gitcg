@@ -1,0 +1,27 @@
+{
+  "icicle": {
+    "id": "icicly",
+    "name": "Icicle",
+    "icon": "glacial_waltz",
+    "effect": {
+      "damage": [{ "id": "cryo", "type": "Cryo", "amount": 2 }],
+      "heal": [{ "front": 1 }, { "back": 1 }],
+        "status": {
+          "elementalApplication": ["hydro"],
+          "characterStatus": [],
+          "groupStatus": [],
+          "oppoStatus": []
+        }
+    },
+    "usage": {
+      "times": 3
+    }
+  },
+  "Prev": {
+    "id": "prev",
+    "name": "Prev",
+    "effect": {
+      "rotate": -1
+    }
+  }
+}

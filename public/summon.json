@@ -1,0 +1,35 @@
+{
+  "large_wind_spirit": {
+    "id": "large_wind_spirit",
+    "name": "Large Wind Spirit",
+    "icon": "large_wind_spirit",
+    "effect": {
+      "damage": [{ "id": "anemo", "type": "Anemo", "amount": 2 }],
+      "heal": [],
+      "status": {
+        "elementalApplication": [],
+        "characterStatus": [],
+        "groupStatus": [],
+        "oppoStatus": []
+      }
+    },
+    "usage": {
+      "rounds": 3
+    }
+  },
+  "melody_loop": {
+    "id": "melody_loop",
+    "name": "Melody Loop",
+    "icon": "melody_loop",
+    "effect": {
+      "damage": [],
+      "heal": [{ "front": 1 }, { "back": 1 }],
+      "status": {
+        "elementalApplication": ["hydro"],
+        "characterStatus": [],
+        "groupStatus": [],
+        "oppoStatus": []
+      }
+    }
+  }
+}

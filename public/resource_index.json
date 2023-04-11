@@ -438,7 +438,8 @@
       "none",
       "omni",
       "pyro",
-      "unaligned"
+      "unaligned",
+      "energy"
     ]
   },
   "Summon": [

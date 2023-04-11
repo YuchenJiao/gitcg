@@ -1,5 +1,4 @@
 {
-  "_id": 1103,
   "id": "kaeya",
   "name": "Kaeya",
   "title": "\"Frostwind Swordsman\" Kaeya",
@@ -12,16 +11,8 @@
     "weapon": "Sword",
     "faction": ["Mondstadt"],
     "talent_card": {
-      "_id": 3210,
       "id": "coldblooded_strike",
       "name": "Cold-Blooded Strike"
-    },
-    "source": ["Obtained from the initial deck"],
-    "character": {
-      "_id": 10000015,
-      "id": "kaeya",
-      "name": "Kaeya",
-      "rarity": 4
     }
   },
   "skills": [
@@ -29,55 +20,85 @@
       "id": "ceremonial_bladework",
       "name": "Ceremonial Bladework",
       "desc": "Deals 2 <span style=\"color:#FFFFFFFF\">Physical DMG</span>.",
-      "skillTag": ["Normal Attack"],
+      "skillTag": "Normal Attack",
       "points": [
         {
-          "_id": 1101,
           "id": "cryo",
           "type": "Cryo",
           "count": 1
         },
         {
-          "_id": 1109,
-          "id": "unaligned_element",
+          "id": "unaligned",
           "type": "Unaligned Element",
           "count": 2
         }
-      ]
+      ],
+      "effect": {
+        "damage": [{ "id": "physical", "type": "Physical", "amount": 2 }],
+        "heal": [{ "front": 0 }, { "back": 0 }],
+        "status": {
+          "elementalApplication": [],
+          "characterStatus": [],
+          "groupStatus": [],
+          "oppoStatus": [],
+          "energy": 1
+        },
+        "summon": []
+      }
     },
     {
       "id": "frostgnaw",
       "name": "Frostgnaw",
       "desc": "Deals 3 <span style=\"color:#99FFFFFF\">Cryo DMG</span>.",
-      "skillTag": ["Elemental Skill"],
+      "skillTag": "Elemental Skill",
       "points": [
         {
-          "_id": 1101,
           "id": "cryo",
           "type": "Cryo",
           "count": 3
         }
-      ]
+      ],
+      "effect": {
+        "damage": [{ "id": "cryo", "type": "Cryo", "amount": 3 }],
+        "heal": [{ "front": 0 }, { "back": 0 }],
+        "status": {
+          "elementalApplication": [],
+          "characterStatus": [],
+          "groupStatus": [],
+          "oppoStatus": [],
+          "energy": 1
+        },
+        "summon": []
+      }
     },
     {
       "id": "glacial_waltz",
       "name": "Glacial Waltz",
       "desc": "Deals 1 <span style=\"color:#99FFFFFF\">Cryo DMG</span>, creates 1 <span style=\"color:#FFFFFFFF\">Icicle</span>.",
-      "skillTag": ["Elemental Burst"],
+      "skillTag": "Elemental Burst",
       "points": [
         {
-          "_id": 1101,
           "id": "cryo",
           "type": "Cryo",
           "count": 4
         },
         {
-          "_id": 1110,
           "id": "energy",
           "type": "Energy",
           "count": 2
         }
-      ]
+      ],
+      "effect": {
+        "damage": [{ "id": "cryo", "type": "Cryo", "amount": 1 }],
+        "heal": [{ "front": 0 }, { "back": 0 }],
+        "status": {
+          "elementalApplication": [],
+          "characterStatus": [],
+          "groupStatus": ["icicle"],
+          "oppoStatus": []
+        },
+        "summon": []
+      }
     }
   ]
 }
