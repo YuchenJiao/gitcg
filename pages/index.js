@@ -1,13 +1,18 @@
 import { withSessionSsr } from "./lib/config/withSession";
 import { statusCheck } from "@/helpers/statusCheck";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { authenticate } from "@/helpers/authenticate";
+import styles from "styles/index.module.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
 
 export default Home;
 
-function Home({ uid, username, decks }) {
+function Home({ uid, username, avatar }) {
   const router = useRouter();
+  const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
 
   const logout = async () => {
     fetch("/api/logout", {
@@ -23,14 +28,85 @@ function Home({ uid, username, decks }) {
       });
   };
 
+  const updateInfo = async () => {
+    fetch("/api/avatar", {});
+  };
+
   return (
-    <div>
-      <h1 className="display-3">Hello {username}</h1>
-      {/* <Link href={`/edit/DECKID`} className="btn btn-link">Edit Deck</Link> */}
-      <button onClick={logout} className="btn btn-primary">
-        logout
-      </button>
-    </div>
+    <>
+      <nav className={`${styles.sidebar} d-lg-block collapse bg-white`}>
+        <div className={`${styles.center}`}>
+          <div className={`${styles.center} list-group list-group-flush`}>
+            <div className="list-group-item">
+              <img
+                id="avatar"
+                src={avatarImg}
+                alt="default avatar"
+                className={`${styles.avatar}`}
+              ></img>
+            </div>
+            {/* <div className="list-group-item">
+              <p className="h6">{uid}</p>
+            </div> */}
+            <div className="list-group-item">
+              <p className="h5">{username}</p>
+            </div>
+            <div className="list-group-item">
+              <button onClick={updateInfo} className="btn btn-primary">
+                edit
+              </button>
+            </div>
+            <div className="list-group-item">
+              <button onClick={logout} className="btn btn-primary">
+                logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <Swiper
+        slidesPerView={3}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className={"mySwiper"}
+      >
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+      </Swiper>
+      <Swiper
+        slidesPerView={3}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className={"mySwiper"}
+      >
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+      </Swiper>
+    </>
   );
 }
 
@@ -44,7 +120,6 @@ export const getServerSideProps = withSessionSsr(async ({ req, res }) => {
   const user = req.session.user;
 
   return {
-    // props: { uid: user.id, username: user.username, decks: user.decks },
-    props: { uid: user.id, username: user.username },
+    props: { uid: user.id, username: user.username, avatar: user.avatar },
   };
 });

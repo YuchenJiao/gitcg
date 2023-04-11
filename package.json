@@ -17,6 +17,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-hook-form": "latest"
+    "react-hook-form": "latest",
+    "swiper": "^9.2.0"
   }
 }

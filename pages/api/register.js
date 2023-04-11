@@ -21,7 +21,7 @@ async function handler(req, res) {
         const hash = bcrypt.hashSync(password, salt);
         const result = await collection.insertOne({
           username: username,
-          password: hash,
+          password: hash
         });
         res.status(201).json({
           response: {
