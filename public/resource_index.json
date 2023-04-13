@@ -111,7 +111,7 @@
           "elemental_resonance_soothing_water",
           "elemental_resonance_woven_waters"
         ],
-        "Pryo": [
+        "Pyro": [
           "elemental_resonance_fervent_flames",
           "elemental_resonance_woven_flames"
         ]
@@ -169,7 +169,7 @@
     "cyno",
     "diluc",
     "diona",
-    "fatui_pryo_agent",
+    "fatui_pyro_agent",
     "fischl",
     "ganyu",
     "jadeplume_terrorshroom",
@@ -177,7 +177,7 @@
     "kaeya",
     "kamisato_ayaka",
     "keqing",
-    "maguu-kenki",
+    "maguu_kenki",
     "mirror_maiden",
     "mona",
     "ningguang",
@@ -219,7 +219,7 @@
     "cyno",
     "diluc",
     "diona",
-    "fatui_pryo_agent",
+    "fatui_pyro_agent",
     "fischl",
     "ganyu",
     "jadeplume_terrorshroom",
@@ -228,7 +228,7 @@
     "kamisato_ayaka",
     "keqing",
     "klee",
-    "maguu-kenki",
+    "maguu_kenki",
     "mirror_maiden",
     "mona",
     "ningguang",
@@ -270,7 +270,7 @@
         ],
         "diluc": ["dawn", "searing_onslaught", "tempered_sword"],
         "diona": ["icy_paws", "ktzlein_style", "signature_mix"],
-        "fatui_pryo_agent": [
+        "fatui_pyro_agent": [
           "blade_ablaze",
           "prowl",
           "stealth_master",
@@ -307,7 +307,7 @@
           "yunlai_swordsmanship"
         ],
         "klee": ["jumpy_dumpty", "kaboom", "sparks_n_splash"],
-        "maguu-kenki": [
+        "maguu_kenki": [
           "blustering_blade",
           "frosty_assault",
           "ichimonji",

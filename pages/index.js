@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
-import useSWR from "swr";
 import { useEffect, useState } from "react";
 
 export default Home;
@@ -16,6 +15,7 @@ function Home({ uid, username, avatar }) {
   const router = useRouter();
   const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
   const [charList, setCharList] = useState([]);
+  const [actionCardList, setActionCardList] = useState([]);
 
   const logout = async () => {
     fetch("/api/logout", {
@@ -31,21 +31,36 @@ function Home({ uid, username, avatar }) {
       });
   };
 
-  const getCharacters = async () => {
-    const res = await fetch("/api/characters", {
+  const getCards = async (endPoint, func) => {
+    const res = await fetch(endPoint, {
       method: "GET",
     });
     try {
       await statusCheck(res);
       const content = await res.json();
-      setCharList(Array.from(content));
+      func(Array.from(content));
     } catch (err) {
       console.error(err);
     }
   };
 
+  // const getCharacters = async () => {
+  //   const res = await fetch("/api/characters", {
+  //     method: "GET",
+  //   });
+  //   try {
+  //     await statusCheck(res);
+  //     const content = await res.json();
+  //     setCharList(Array.from(content));
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
   useEffect(() => {
-    getCharacters();
+    // getCharacters();
+    getCards("/api/characters", setCharList);
+    getCards("/api/actionCards", setActionCardList);
   }, []);
 
   return (
@@ -61,9 +76,6 @@ function Home({ uid, username, avatar }) {
                 className={`${styles.avatar}`}
               ></img>
             </div>
-            {/* <div className="list-group-item">
-              <p className="h6">{uid}</p>
-            </div> */}
             <div className="list-group-item">
               <p className="h5">{username}</p>
             </div>
@@ -89,9 +101,11 @@ function Home({ uid, username, avatar }) {
         className={"mySwiper"}
       >
         {charList.map((img, idx) => {
-          return <SwiperSlide key={idx}>
-            <img src={img} alt={img}></img>
-          </SwiperSlide>;
+          return (
+            <SwiperSlide key={idx}>
+              <img src={img} alt={img}></img>
+            </SwiperSlide>
+          );
         })}
       </Swiper>
     </>
