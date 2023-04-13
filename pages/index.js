@@ -7,12 +7,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
+import useSWR from "swr";
+import { useEffect, useState } from "react";
 
 export default Home;
 
 function Home({ uid, username, avatar }) {
   const router = useRouter();
   const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
+  const [charList, setCharList] = useState([]);
 
   const logout = async () => {
     fetch("/api/logout", {
@@ -24,13 +27,26 @@ function Home({ uid, username, avatar }) {
         router.push("/account/login");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
-  const updateInfo = async () => {
-    fetch("/api/avatar", {});
+  const getCharacters = async () => {
+    const res = await fetch("/api/characters", {
+      method: "GET",
+    });
+    try {
+      await statusCheck(res);
+      const content = await res.json();
+      setCharList(Array.from(content));
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  useEffect(() => {
+    getCharacters();
+  }, []);
 
   return (
     <>
@@ -51,11 +67,11 @@ function Home({ uid, username, avatar }) {
             <div className="list-group-item">
               <p className="h5">{username}</p>
             </div>
-            <div className="list-group-item">
-              <button onClick={updateInfo} className="btn btn-primary">
+            {/* <div className="list-group-item">
+              <button onClick={getCharacters} className="btn btn-primary">
                 edit
               </button>
-            </div>
+            </div> */}
             <div className="list-group-item">
               <button onClick={logout} className="btn btn-primary">
                 logout
@@ -72,39 +88,11 @@ function Home({ uid, username, avatar }) {
         modules={[Pagination]}
         className={"mySwiper"}
       >
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-      </Swiper>
-      <Swiper
-        slidesPerView={3}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className={"mySwiper"}
-      >
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
-        <SwiperSlide><img src="/img/Character/barbara.png"></img></SwiperSlide>
+        {charList.map((img, idx) => {
+          return <SwiperSlide key={idx}>
+            <img src={img} alt={img}></img>
+          </SwiperSlide>;
+        })}
       </Swiper>
     </>
   );

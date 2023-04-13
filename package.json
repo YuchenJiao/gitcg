@@ -15,9 +15,11 @@
     "localtunnel": "^2.0.2",
     "mongodb": "latest",
     "next": "latest",
+    "prop-types": "^15.8.1",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "latest",
-    "swiper": "^9.2.0"
+    "swiper": "^9.2.0",
+    "swr": "^2.1.3"
   }
 }
