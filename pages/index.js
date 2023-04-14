@@ -44,19 +44,6 @@ function Home({ uid, username, avatar }) {
     }
   };
 
-  // const getCharacters = async () => {
-  //   const res = await fetch("/api/characters", {
-  //     method: "GET",
-  //   });
-  //   try {
-  //     await statusCheck(res);
-  //     const content = await res.json();
-  //     setCharList(Array.from(content));
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   useEffect(() => {
     // getCharacters();
     getCards("/api/characters", setCharList);
@@ -95,12 +82,28 @@ function Home({ uid, username, avatar }) {
       <Swiper
         slidesPerView={3}
         pagination={{
-          clickable: true,
+          dynamicBullets: true,
         }}
         modules={[Pagination]}
         className={"mySwiper"}
       >
         {charList.map((img, idx) => {
+          return (
+            <SwiperSlide key={idx}>
+              <img src={img} alt={img}></img>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      <Swiper
+        slidesPerView={3}
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={[Pagination]}
+        className={"mySwiper"}
+      >
+        {actionCardList.map((img, idx) => {
           return (
             <SwiperSlide key={idx}>
               <img src={img} alt={img}></img>
