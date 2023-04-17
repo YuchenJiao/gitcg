@@ -394,7 +394,8 @@
           "frozen",
           "full",
           "heal",
-          "time_shield"
+          "time_shield",
+          "sword"
         ],
         "Field": ["time_counter", "card_num", "counter", "time_shield", "heal"],
         "Group": [

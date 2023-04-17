@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { withSessionRoute } from "pages/lib/config/withSession";
+import { withSessionRoute } from "@/lib/config/withSession";
 import { json2Str } from "@/helpers/json2Str";
 // import path from "path";
 // import { promises as fs } from "fs";
