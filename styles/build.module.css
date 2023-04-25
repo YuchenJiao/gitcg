@@ -1,0 +1,8 @@
+.row_container {
+  display: flex;
+  align-items: center;
+  width: 125vmin;
+}
+.button {
+  margin-left: 50px;
+}

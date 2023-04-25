@@ -22,7 +22,7 @@ function SideBar({ username, avatarImg }) {
   };
 
   const toDeckPage = () => {
-    router.push("/edit");
+    router.push("/decks");
   };
 
   const toHomePage = () => {

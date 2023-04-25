@@ -1,16 +1,16 @@
 import { withSessionSsr } from "@/lib/config/withSession";
 import { statusCheck } from "@/helpers/statusCheck";
 import { authenticate } from "@/helpers/authenticate";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination } from "swiper";
 import { useEffect, useState } from "react";
 import { SideBar } from "@/components/mainPage/SideBar";
+// import styles from "@/styles/decks.module.css";
+// import { CardSlide } from "@/components/deckPage/CardSlide";
+// import { BsBookmarkPlus, BsBookmark } from "react-icons/bs";
+import {DeckArray} from "@/components/deckPage/DeckArray";
 
-export default Edit;
+export default Decks;
 
-function Edit({ uid, username, avatar }) {
+function Decks({ uid, username, avatar }) {
   const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
   const [charList, setCharList] = useState([]);
   const [actionCardList, setActionCardList] = useState([]);
@@ -37,38 +37,20 @@ function Edit({ uid, username, avatar }) {
   return (
     <>
       <SideBar username={username} avatarImg={avatarImg}></SideBar>
-      <Swiper
-        slidesPerView={3}
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination]}
-        className={"mySwiper"}
-      >
-        {charList.map((img, idx) => {
-          return (
-            <SwiperSlide key={idx}>
-              <img src={img} alt={img}></img>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-      <Swiper
-        slidesPerView={3}
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination]}
-        className={"mySwiper"}
-      >
-        {actionCardList.map((img, idx) => {
-          return (
-            <SwiperSlide key={idx}>
-              <img src={img} alt={img}></img>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      {/* <div className={`${styles.row_container}`}>
+        <CardSlide viewCount={3} imgList={charList}></CardSlide>
+        <button className={`${styles.button} btn btn-primary`}>Build</button>
+      </div>
+      <div className={`${styles.row_container}`}>
+        <CardSlide viewCount={4} imgList={actionCardList}></CardSlide>
+        <button className={`${styles.button} btn btn-primary`}>Edit</button>
+      </div> */}
+
+      {/* <div className={`${styles.card_container}`}>
+        <BsBookmarkPlus size={500} className={`${styles.card}`}></BsBookmarkPlus>
+        <BsBookmark size={100} className={`${styles.hp}`}></BsBookmark>
+      </div> */}
+      <DeckArray></DeckArray>
     </>
   );
 }
