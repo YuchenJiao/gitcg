@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import styles from "@/styles/CardSlide.module.css";
 import cardStyles from "@/styles/Card.module.css";
 import Card from "@/components/deckPage/Card";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default CardSlide;
 
@@ -33,10 +33,13 @@ function CardSlide({ viewCount, imgList, type, max }) {
         break;
       default:
     }
-  }
+  };
 
   return (
     <div onClick={refreshCount}>
+      <p>
+        {cardNum}/{max}
+      </p>
       <Swiper
         slidesPerView={viewCount}
         pagination={{
@@ -53,9 +56,6 @@ function CardSlide({ viewCount, imgList, type, max }) {
           );
         })}
       </Swiper>
-      <p>
-        {cardNum}/{max}
-      </p>
     </div>
   );
 }
