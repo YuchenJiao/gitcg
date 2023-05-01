@@ -1,8 +1,13 @@
-.row_container {
-  display: flex;
-  align-items: center;
+.slide_row {
   width: 125vmin;
+  margin: 5vmin;
+  margin-left: 0;
+}
+.button_row {
+  margin-left: 15vw;
+  display: flex;
+  justify-content: center;
 }
 .button {
-  margin-left: 50px;
+  margin: 5vmin;
 }

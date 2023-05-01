@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { statusCheck } from "@/helpers/statusCheck";
 import styles from "styles/SideBar.module.css";
 
-export { SideBar };
+export default SideBar;
 
 function SideBar({ username, avatarImg }) {
   const router = useRouter();

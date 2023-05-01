@@ -3,19 +3,18 @@ import { BsBookmarkPlus, BsBookmark } from "react-icons/bs";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 
-export { DeckArray };
+export default DeckArray;
 
-function DeckArray({ deckList }) {
+function DeckArray({ deckList, length, defaultName, size }) {
   const router = useRouter();
 
-  const length = 8;
   const arr = [...Array(length)].map(() => {
     return { value: 0 };
   });
 
   const toBuild = () => {
     router.push("/build");
-  }
+  };
 
   return (
     <div className={`${styles.outer_container}`}>
@@ -24,11 +23,11 @@ function DeckArray({ deckList }) {
           <div className={`${styles.container}`}>
             <BsBookmarkPlus
               key={idx}
-              size={150}
+              size={size}
               className={`${styles.deck}`}
               onClick={toBuild}
             ></BsBookmarkPlus>
-            <p>Create new Deck</p>
+            <p>{defaultName}</p>
           </div>
         );
       })}
@@ -36,6 +35,9 @@ function DeckArray({ deckList }) {
   );
 }
 
-// DeckArray.propTypes = {
-//   deckList: PropTypes.arrayOf(PropTypes.string).isRequired,
-// };
+DeckArray.propTypes = {
+  // deckList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  length: PropTypes.number.isRequired,
+  defaultName: PropTypes.string,
+  size: PropTypes.number.isRequired,
+};

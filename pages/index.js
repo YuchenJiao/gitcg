@@ -1,6 +1,6 @@
 import { withSessionSsr } from "@/lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
-import { SideBar } from "@/components/mainPage/SideBar";
+import SideBar from "@/components/mainPage/SideBar";
 import Image from "next/image";
 import { useMouse } from "primereact/hooks";
 

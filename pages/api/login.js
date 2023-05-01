@@ -33,7 +33,9 @@ async function handler(req, res) {
         req.session.user = {
           id: result._id.toString(),
           username: result.username,
-          avatar: req.session.user?.avatar ? req.session.user.avatar : "/img/Avatar/jean.png",
+          avatar: req.session.user?.avatar
+            ? req.session.user.avatar
+            : "/img/Avatar/jean.png",
         };
         await req.session.save();
         res.status(200).json({

@@ -2,11 +2,11 @@ import { withSessionSsr } from "@/lib/config/withSession";
 import { statusCheck } from "@/helpers/statusCheck";
 import { authenticate } from "@/helpers/authenticate";
 import { useEffect, useState } from "react";
-import { SideBar } from "@/components/mainPage/SideBar";
+import SideBar from "@/components/mainPage/SideBar";
 // import styles from "@/styles/decks.module.css";
 // import { CardSlide } from "@/components/deckPage/CardSlide";
 // import { BsBookmarkPlus, BsBookmark } from "react-icons/bs";
-import {DeckArray} from "@/components/deckPage/DeckArray";
+import DeckArray from "@/components/deckPage/DeckArray";
 
 export default Decks;
 
@@ -37,20 +37,11 @@ function Decks({ uid, username, avatar }) {
   return (
     <>
       <SideBar username={username} avatarImg={avatarImg}></SideBar>
-      {/* <div className={`${styles.row_container}`}>
-        <CardSlide viewCount={3} imgList={charList}></CardSlide>
-        <button className={`${styles.button} btn btn-primary`}>Build</button>
-      </div>
-      <div className={`${styles.row_container}`}>
-        <CardSlide viewCount={4} imgList={actionCardList}></CardSlide>
-        <button className={`${styles.button} btn btn-primary`}>Edit</button>
-      </div> */}
-
-      {/* <div className={`${styles.card_container}`}>
-        <BsBookmarkPlus size={500} className={`${styles.card}`}></BsBookmarkPlus>
-        <BsBookmark size={100} className={`${styles.hp}`}></BsBookmark>
-      </div> */}
-      <DeckArray></DeckArray>
+      <DeckArray
+        length={8}
+        defaultName={"Create New Deck"}
+        size={150}
+      ></DeckArray>
     </>
   );
 }

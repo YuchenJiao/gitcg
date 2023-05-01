@@ -3,10 +3,9 @@ import { statusCheck } from "@/helpers/statusCheck";
 import { authenticate } from "@/helpers/authenticate";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { SideBar } from "@/components/mainPage/SideBar";
+import SideBar from "@/components/mainPage/SideBar";
 import styles from "@/styles/build.module.css";
-import { CardSlide } from "@/components/deckPage/CardSlide";
-// import { BsBookmarkPlus, BsBookmark } from "react-icons/bs";
+import CardSlide from "@/components/deckPage/CardSlide";
 
 export default Build;
 
@@ -30,7 +29,6 @@ function Build({ uid, username, avatar }) {
   };
 
   useEffect(() => {
-    // getCharacters();
     getCards("/api/characters", setCharList);
     getCards("/api/actionCards", setActionCardList);
   }, []);
@@ -38,29 +36,41 @@ function Build({ uid, username, avatar }) {
   const onSave = async () => {
     console.log("Saved");
     router.push("/decks");
-  }
+  };
 
   const onCancel = () => {
     console.log("Clean all chosen cards");
     router.push("/decks");
-  }
+  };
 
   return (
     <>
       <SideBar username={username} avatarImg={avatarImg}></SideBar>
-      <div className={`${styles.row_container}`}>
-        <CardSlide viewCount={5} imgList={charList}></CardSlide>
-        <button className={`${styles.button} btn btn-primary`} onClick={onSave}>Save</button>
+      <div className={`${styles.slide_row}`}>
+        <CardSlide
+          viewCount={5}
+          imgList={charList}
+          type={"characterCard"}
+        ></CardSlide>
       </div>
-      <div className={`${styles.row_container}`}>
-        <CardSlide viewCount={5} imgList={actionCardList}></CardSlide>
-        <button className={`${styles.button} btn btn-primary`} onClick={onCancel}>Cancel</button>
+      <div className={`${styles.slide_row}`}>
+        <CardSlide
+          viewCount={5}
+          imgList={actionCardList}
+          type={"actionCard"}
+        ></CardSlide>
       </div>
-
-      {/* <div className={`${styles.card_container}`}>
-        <BsBookmarkPlus size={500} className={`${styles.card}`}></BsBookmarkPlus>
-        <BsBookmark size={100} className={`${styles.hp}`}></BsBookmark>
-      </div> */}
+      <div className={`${styles.button_row}`}>
+        <button className={`${styles.button} btn btn-primary`} onClick={onSave}>
+          Save
+        </button>
+        <button
+          className={`${styles.button} btn btn-primary`}
+          onClick={onCancel}
+        >
+          Cancel
+        </button>
+      </div>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Layout } from "@/components/account/Layout";
+import Layout from "@/components/account/Layout";
 import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import localFont from "next/font/local";

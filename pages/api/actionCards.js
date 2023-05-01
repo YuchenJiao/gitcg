@@ -10,7 +10,7 @@ export default withSessionRoute(handler);
 async function handler(req, res) {
   const excludeKeqingSkill = (path) => {
     return !path.includes("lightning_stiletto");
-  }
+  };
 
   if (req.method === "GET") {
     try {
