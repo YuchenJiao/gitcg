@@ -72,13 +72,8 @@ function Card({ img, type }) {
         refAddTwo.current.classList.add(`${styles.hidden}`);
       }
     } else {
-      if (!refAddTwo.current.classList.contains(`${styles.hidden}`)) {
-        refAddOne.current.classList.remove(`${styles.hidden}`);
-        refAddTwo.current.classList.add(`${styles.hidden}`);
-      } else if (!refAddOne.current.classList.contains(`${styles.hidden}`)) {
-        refAddOne.current.classList.add(`${styles.hidden}`);
-        refAddTwo.current.classList.add(`${styles.hidden}`);
-      }
+      refAddOne.current.classList.add(`${styles.hidden}`);
+      refAddTwo.current.classList.add(`${styles.hidden}`);
     }
   };
 

@@ -51,6 +51,7 @@ function Build({ uid, username, avatar }) {
           viewCount={5}
           imgList={charList}
           type={"characterCard"}
+          max={3}
         ></CardSlide>
       </div>
       <div className={`${styles.slide_row}`}>
@@ -58,6 +59,7 @@ function Build({ uid, username, avatar }) {
           viewCount={5}
           imgList={actionCardList}
           type={"actionCard"}
+          max={30}
         ></CardSlide>
       </div>
       <div className={`${styles.button_row}`}>
