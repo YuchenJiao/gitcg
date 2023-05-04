@@ -31,10 +31,7 @@ async function handler(req, res) {
         );
       } else {
         res.status(404).json({
-          response: {
-            data: "character list is lost",
-            code: 404,
-          },
+          msg: "character list is lost",
         });
       }
       client.close();
@@ -51,10 +48,7 @@ async function handler(req, res) {
       // );
     } catch (err) {
       res.status(500).json({
-        response: {
-          data: err,
-          code: 500,
-        },
+        err,
       });
     }
   }

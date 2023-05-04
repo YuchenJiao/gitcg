@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { statusCheck } from "@/helpers/statusCheck";
 import styles from "styles/SideBar.module.css";
+import axios from "@/axios/custom";
 
 export default SideBar;
 
@@ -8,17 +8,13 @@ function SideBar({ username, avatarImg }) {
   const router = useRouter();
 
   const logout = async () => {
-    fetch("/api/logout", {
-      method: "GET",
-    })
-      .then(statusCheck)
-      .then(() => {
-        console.log("Logout");
-        router.push("/account/login");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    try {
+      const resp = await axios.get("/logout");
+      console.log("Logout");
+      router.push("/account/login");
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   const toDeckPage = () => {

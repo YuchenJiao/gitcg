@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-import { statusCheck } from "@/helpers/statusCheck";
+import axios from "@/axios/custom";
 
 export default Login;
 
@@ -12,28 +11,24 @@ function Login() {
 
   async function onSubmit(data) {
     const { username, password } = data;
-    fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify({
+    try {
+      const resp = await axios.post("/login", {
         username: username,
         password: password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(statusCheck)
-      .then((res) => res.json())
-      .then((text) => {
-        console.log(text);
-        router.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(
-          "Invalid username and/or password combination. Please try again!"
-        );
       });
+      console.log(resp.data.msg);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      switch (error.response.status) {
+        case 401:
+          console.log(error.response.data.msg);
+          alert("Invalid username and/or password combination. Please try again!");
+          break;
+        default:
+          alert("Something went wrong on the server. Please try again later.");
+      }
+    }
   }
 
   return (

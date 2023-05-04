@@ -1,12 +1,9 @@
 import { withSessionSsr } from "@/lib/config/withSession";
-import { statusCheck } from "@/helpers/statusCheck";
 import { authenticate } from "@/helpers/authenticate";
 import { useEffect, useState } from "react";
 import SideBar from "@/components/mainPage/SideBar";
-// import styles from "@/styles/decks.module.css";
-// import { CardSlide } from "@/components/deckPage/CardSlide";
-// import { BsBookmarkPlus, BsBookmark } from "react-icons/bs";
 import DeckArray from "@/components/deckPage/DeckArray";
+import axios from "@/axios/custom";
 
 export default Decks;
 
@@ -16,22 +13,18 @@ function Decks({ uid, username, avatar }) {
   const [actionCardList, setActionCardList] = useState([]);
 
   const getCards = async (endPoint, func) => {
-    const res = await fetch(endPoint, {
-      method: "GET",
-    });
     try {
-      await statusCheck(res);
-      const content = await res.json();
+      const resp = await axios.get(endPoint);
+      const content = resp.data;
       func(Array.from(content));
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
 
   useEffect(() => {
-    // getCharacters();
-    getCards("/api/characters", setCharList);
-    getCards("/api/actionCards", setActionCardList);
+    getCards("/characters", setCharList);
+    getCards("/actionCards", setActionCardList);
   }, []);
 
   return (

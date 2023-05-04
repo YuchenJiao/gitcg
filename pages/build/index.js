@@ -1,11 +1,11 @@
 import { withSessionSsr } from "@/lib/config/withSession";
-import { statusCheck } from "@/helpers/statusCheck";
 import { authenticate } from "@/helpers/authenticate";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SideBar from "@/components/mainPage/SideBar";
 import styles from "@/styles/build.module.css";
 import CardSlide from "@/components/deckPage/CardSlide";
+import axios from "@/axios/custom";
 
 export default Build;
 
@@ -16,21 +16,18 @@ function Build({ uid, username, avatar }) {
   const router = useRouter();
 
   const getCards = async (endPoint, func) => {
-    const res = await fetch(endPoint, {
-      method: "GET",
-    });
     try {
-      await statusCheck(res);
-      const content = await res.json();
+      const resp = await axios.get(endPoint);
+      const content = resp.data;
       func(Array.from(content));
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
 
   useEffect(() => {
-    getCards("/api/characters", setCharList);
-    getCards("/api/actionCards", setActionCardList);
+    getCards("/characters", setCharList);
+    getCards("/actionCards", setActionCardList);
   }, []);
 
   const onSave = async () => {

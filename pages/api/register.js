@@ -24,28 +24,17 @@ async function handler(req, res) {
           password: hash,
         });
         res.status(201).json({
-          response: {
-            data: result,
-            code: 201,
-          },
+          data: result,
         });
       } else {
         res.status(409).json({
-          response: {
-            data: {
-              msg: "Username already exists",
-            },
-            code: 409,
-          },
+          msg: "Username already exists",
         });
       }
       client.close();
     } catch (err) {
       res.status(500).json({
-        response: {
-          data: err,
-          code: 500,
-        },
+        err,
       });
     }
   }

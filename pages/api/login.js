@@ -39,29 +39,16 @@ async function handler(req, res) {
         };
         await req.session.save();
         res.status(200).json({
-          response: {
-            data: {
-              msg: "Login succeed",
-            },
-            code: 200,
-          },
+          msg: "Login succeed",
         });
       } else {
         res.status(401).json({
-          response: {
-            data: {
-              msg: "Invalid credential",
-            },
-            code: 401,
-          },
+          msg: "Invalid credential",
         });
       }
     } catch (err) {
       res.status(500).json({
-        response: {
-          data: err,
-          code: 500,
-        },
+        err,
       });
     }
   }

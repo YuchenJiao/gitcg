@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-import { statusCheck } from "@/helpers/statusCheck";
+import axios from "@/axios/custom";
 
 export default Register;
 
@@ -15,38 +14,27 @@ function Register() {
 
   async function onSubmit(data) {
     const { username, password } = data;
-    fetch("/api/register", {
-      method: "POST",
-      body: JSON.stringify({
+    try {
+      const resp = await axios.post("/register", {
         username: username,
         password: password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(statusCheck)
-      .then((res) => res.json())
-      .then((text) => {
-        console.log(text);
-        alert("Register succeed");
-        setTimeout(() => {
-          router.push("/");
-        }, 1000);
-      })
-      .catch((err) => {
-        const errorMessage = JSON.parse(err.toString().substring(7));
-        switch (errorMessage.response.code) {
-          case 409:
-            alert("Username already exists. Please try something else.");
-            break;
-          default:
-            alert(
-              "Something went wrong on the server. Please try again later."
-            );
-        }
-        console.log(errorMessage.response.data.msg);
       });
+      console.log(resp.data);
+      alert("Register succeed");
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+      switch (error.response.status) {
+        case 409:
+          console.log(error.response.data.msg);
+          alert("Username already exists. Please try something else.");
+          break;
+        default:
+          alert("Something went wrong on the server. Please try again later.");
+      }
+    }
   }
 
   // The password is at least 8 characters long (?=.{8,})
