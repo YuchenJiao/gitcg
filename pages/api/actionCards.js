@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 import { withSessionRoute } from "@/lib/config/withSession";
 import { json2Str } from "@/helpers/json2Str";
+import { genMongoToken } from "@/helpers/genMongoToken";
 // import path from "path";
 // import { promises as fs } from "fs";
 
@@ -14,10 +15,7 @@ async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const token =
-        process.env.MONGODB_TOKEN_PREFIX +
-        "genshin_resource" +
-        process.env.MONGODB_TOKEN_SUFFIX;
+      const token = genMongoToken("genshin_resource");
       const client = await MongoClient.connect(token);
       const db = client.db();
       const collection = db.collection("index");

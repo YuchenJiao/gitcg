@@ -3,16 +3,20 @@ import { authenticate } from "@/helpers/authenticate";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SideBar from "@/components/mainPage/SideBar";
-import styles from "@/styles/build.module.css";
+import styles from "@/styles/buildDeck.module.css";
 import CardSlide from "@/components/deckPage/CardSlide";
 import axios from "@/axios/custom";
 
-export default Build;
+export default Deck;
 
-function Build({ uid, username, avatar }) {
+function Deck({ uid, username, avatar }) {
   const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
   const [charList, setCharList] = useState([]);
   const [actionCardList, setActionCardList] = useState([]);
+  const [selectedChar, setSelectedChar] = useState(0);
+  const [selectedActionCard, setSelectedActionCard] = useState(0);
+  const [selectedCharList, setSelectedCharList] = useState([""]);
+  const [selectedActionCardList, setSelectedActionCardList] = useState([""]);
   const router = useRouter();
 
   const getCards = async (endPoint, func) => {
@@ -31,14 +35,28 @@ function Build({ uid, username, avatar }) {
   }, []);
 
   const onSave = async () => {
-    console.log("Saved");
-    router.push("/decks");
+    if (selectedChar !== 3 || selectedActionCard !== 30) {
+      alert(
+        "Please select 3 characters and 30 action cards to complete your deck"
+      );
+    } else {
+      try {
+        const resp = await axios.post("/decks", {
+          characters: selectedCharList,
+          actionCarda: selectedActionCardList,
+        });
+        router.push("/decks");
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const onCancel = () => {
-    console.log("Clean all chosen cards");
     router.push("/decks");
   };
+
+  const onDelete = async () => {};
 
   return (
     <>
@@ -49,6 +67,10 @@ function Build({ uid, username, avatar }) {
           imgList={charList}
           type={"characterCard"}
           max={3}
+          selected={selectedChar}
+          setNum={setSelectedChar}
+          list={selectedCharList}
+          setList={setSelectedCharList}
         ></CardSlide>
       </div>
       <div className={`${styles.slide_row}`}>
@@ -57,6 +79,10 @@ function Build({ uid, username, avatar }) {
           imgList={actionCardList}
           type={"actionCard"}
           max={30}
+          selected={selectedActionCard}
+          setNum={setSelectedActionCard}
+          list={selectedActionCardList}
+          setList={setSelectedActionCardList}
         ></CardSlide>
       </div>
       <div className={`${styles.button_row}`}>
@@ -68,6 +94,12 @@ function Build({ uid, username, avatar }) {
           onClick={onCancel}
         >
           Cancel
+        </button>
+        <button
+          className={`${styles.button} btn btn-primary`}
+          onClick={onDelete}
+        >
+          Delete
         </button>
       </div>
     </>

@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-
+import { genMongoToken } from "@/helpers/genMongoToken";
 import { withSessionRoute } from "pages/lib/config/withSession";
 
 // export default handler;
@@ -7,10 +7,7 @@ export default withSessionRoute(handler);
 
 async function handler(req, res) {
   if (req.method === "POST") {
-    const token =
-      process.env.MONGODB_TOKEN_PREFIX +
-      "users" +
-      process.env.MONGODB_TOKEN_SUFFIX;
+    const token = genMongoToken("users");
     try {
       const client = await MongoClient.connect(token);
       const db = client.db();

@@ -64,16 +64,20 @@ function Card({ img, type }) {
       if (!refAddTwo.current.classList.contains(`${styles.hidden}`)) {
         refAddOne.current.classList.add(`${styles.hidden}`);
         refAddTwo.current.classList.add(`${styles.hidden}`);
+        refImg.current.classList.remove(`${styles.selected_action}`);
       } else if (!refAddOne.current.classList.contains(`${styles.hidden}`)) {
         refAddOne.current.classList.add(`${styles.hidden}`);
         refAddTwo.current.classList.remove(`${styles.hidden}`);
+        refImg.current.classList.add(`${styles.selected_action}`);
       } else {
         refAddOne.current.classList.remove(`${styles.hidden}`);
         refAddTwo.current.classList.add(`${styles.hidden}`);
+        refImg.current.classList.add(`${styles.selected_action}`);
       }
     } else {
       refAddOne.current.classList.add(`${styles.hidden}`);
       refAddTwo.current.classList.add(`${styles.hidden}`);
+      refImg.current.classList.remove(`${styles.selected_action}`);
     }
   };
 

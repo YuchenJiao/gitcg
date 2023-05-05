@@ -7,13 +7,14 @@ export default DeckArray;
 
 function DeckArray({ deckList, length, defaultName, size }) {
   const router = useRouter();
+  const deckid = 1;
 
   const arr = [...Array(length)].map(() => {
     return { value: 0 };
   });
 
   const toBuild = () => {
-    router.push("/build");
+    router.push(`/decks/${deckid}`);
   };
 
   return (

@@ -8,6 +8,7 @@
   position: relative;
   border: 0;
   margin: 0;
+  filter: brightness(0.6);
 }
 .char_first .char_second .char_third .num_one .num_two {
   position: absolute;
@@ -18,9 +19,9 @@
   /* visibility: hidden; */
   display: none;
 }
-/* .selected_char {
-  filter: brightness(0.6);
+.selected_char {
+  filter: brightness(1);
 }
 .selected_action {
-  filter: brightness(0.6);
-} */
+  filter: brightness(1);
+}
