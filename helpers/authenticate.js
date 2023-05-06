@@ -1,5 +1,5 @@
-export function authenticate(res) {
-  if (!res.session.user) {
+export function authenticate(req) {
+  if (!req.session.user) {
     return {
       action: {
         redirect: {
