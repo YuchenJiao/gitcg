@@ -7,7 +7,6 @@ import { useMouse } from "primereact/hooks";
 export default Home;
 
 function Home({ uid, username, avatar }) {
-  const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
   const { x, y } = useMouse();
 
   const isOnSideBar = () => {
@@ -17,7 +16,7 @@ function Home({ uid, username, avatar }) {
   return (
     <>
       {isOnSideBar() && (
-        <SideBar username={username} avatarImg={avatarImg}></SideBar>
+        <SideBar username={username} avatarImg={avatar}></SideBar>
       )}
       <Image src="/background.png" alt="official wallpaper" fill></Image>
     </>

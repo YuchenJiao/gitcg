@@ -10,8 +10,7 @@ async function handler(req, res) {
       const client = await MongoClient.connect(token);
       const db = client.db();
       const collection = db.collection("users");
-      const data = req.body;
-      const { username, password } = data;
+      const { username, password } = req.body;
       const existUsername = await collection.findOne({ username: username });
       if (!existUsername) {
         const bcrypt = require("bcrypt");
@@ -20,6 +19,7 @@ async function handler(req, res) {
         const result = await collection.insertOne({
           username: username,
           password: hash,
+          avatar: "/img/Avatar/jean.png",
         });
         res.status(201).json({
           data: result,

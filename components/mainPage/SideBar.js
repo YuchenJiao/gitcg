@@ -1,16 +1,18 @@
 import { useRouter } from "next/router";
 import styles from "styles/SideBar.module.css";
 import axios from "@/axios/custom";
+import { useState } from "react";
 
 export default SideBar;
 
 function SideBar({ username, avatarImg }) {
   const router = useRouter();
+  const [avatar, setAvatar] = useState(avatarImg);
 
   const logout = async () => {
     try {
       const resp = await axios.get("/logout");
-      console.log("Logout");
+      console.log(resp.data);
       router.push("/account/login");
     } catch (error) {
       console.log(error.response);
@@ -25,6 +27,19 @@ function SideBar({ username, avatarImg }) {
     router.push("/");
   };
 
+  const getNextAvatar = async () => {
+    try {
+      const resp = await axios.post("/avatar", {
+        current: avatarImg,
+      });
+      const nextAvatar = resp.data;
+      setAvatar(nextAvatar);
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <nav className={`${styles.sidebar} d-lg-block collapse bg-white`}>
       <div className={`${styles.center}`}>
@@ -32,8 +47,9 @@ function SideBar({ username, avatarImg }) {
           <div className="list-group-item">
             <img
               id="avatar"
-              src={avatarImg}
-              alt="default avatar"
+              src={avatar}
+              alt="avatar"
+              onClick={getNextAvatar}
               className={`${styles.avatar}`}
             ></img>
           </div>

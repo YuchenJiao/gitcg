@@ -6,14 +6,13 @@ import { withSessionRoute } from "pages/lib/config/withSession";
 export default withSessionRoute(handler);
 
 async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     const token = genMongoToken("users");
     try {
       const client = await MongoClient.connect(token);
       const db = client.db();
       const collection = db.collection("users");
-      const data = req.body;
-      const { username, password } = data;
+      const { username, password } = req.query;
       const result = await collection.findOne({ username: username });
       let isCorrectUser = false;
       if (result) {
@@ -30,9 +29,7 @@ async function handler(req, res) {
         req.session.user = {
           id: result._id.toString(),
           username: result.username,
-          avatar: req.session.user?.avatar
-            ? req.session.user.avatar
-            : "/img/Avatar/jean.png",
+          avatar: result.avatar ? result.avatar : "/img/Avatar/jean.png",
         };
         await req.session.save();
         res.status(200).json({

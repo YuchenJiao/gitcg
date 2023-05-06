@@ -41,10 +41,13 @@ function Deck({ uid, username, avatar }) {
       );
     } else {
       try {
-        const resp = await axios.post("/decks", {
+        const resp = await axios.put("/decks", {
           characters: selectedCharList,
-          actionCarda: selectedActionCardList,
+          actionCards: selectedActionCardList,
+          deckid: 1,
+          uid: uid,
         });
+        alert(resp.data);
         router.push("/decks");
       } catch (error) {
         console.log(error);

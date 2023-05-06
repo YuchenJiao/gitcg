@@ -12,9 +12,11 @@ function Login() {
   async function onSubmit(data) {
     const { username, password } = data;
     try {
-      const resp = await axios.post("/login", {
-        username: username,
-        password: password,
+      const resp = await axios.get("/login", {
+        params: {
+          username: username,
+          password: password,
+        },
       });
       console.log(resp.data.msg);
       router.push("/");
@@ -23,7 +25,9 @@ function Login() {
       switch (error.response.status) {
         case 401:
           console.log(error.response.data.msg);
-          alert("Invalid username and/or password combination. Please try again!");
+          alert(
+            "Invalid username and/or password combination. Please try again!"
+          );
           break;
         default:
           alert("Something went wrong on the server. Please try again later.");

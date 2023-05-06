@@ -10,7 +10,7 @@ function DeckArray({ deckList, length, defaultName, size }) {
   const deckid = 1;
 
   const arr = [...Array(length)].map(() => {
-    return { value: 0 };
+    return 0;
   });
 
   const toBuild = () => {
@@ -21,9 +21,8 @@ function DeckArray({ deckList, length, defaultName, size }) {
     <div className={`${styles.outer_container}`}>
       {arr.map((n, idx) => {
         return (
-          <div className={`${styles.container}`}>
+          <div key={idx} className={`${styles.container}`}>
             <BsBookmarkPlus
-              key={idx}
               size={size}
               className={`${styles.deck}`}
               onClick={toBuild}
