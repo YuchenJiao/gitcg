@@ -1,0 +1,28 @@
+.deck {
+  margin: 5vmin;
+  margin-top: 10vmin;
+  visibility: hidden;
+  /* display: none; */
+}
+.deck_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.deck_container img {
+  position: absolute;
+  margin: 0;
+  width: 100px;
+}
+.first {
+  right: 50%;
+  z-index: 20;
+}
+.second {
+  z-index: 10;
+}
+.third {
+  left: 50%;
+}
