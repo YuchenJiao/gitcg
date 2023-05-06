@@ -16,6 +16,10 @@
   margin: 0;
   width: 100px;
 }
+.deck_container img:hover {
+  width: 150px;
+  z-index: 100;
+}
 .first {
   right: 50%;
   z-index: 20;
