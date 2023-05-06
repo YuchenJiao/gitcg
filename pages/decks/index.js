@@ -1,6 +1,5 @@
 import { withSessionSsr } from "@/lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
-import { useEffect, useState } from "react";
 import SideBar from "@/components/mainPage/SideBar";
 import DeckArray from "@/components/deckPage/DeckArray";
 
@@ -16,6 +15,7 @@ function Decks({ uid, username, avatar }) {
         length={8}
         defaultName={"Create New Deck"}
         size={150}
+        uid={uid}
       ></DeckArray>
     </>
   );

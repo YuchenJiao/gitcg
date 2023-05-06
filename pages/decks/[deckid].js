@@ -18,6 +18,7 @@ function Deck({ uid, username, avatar }) {
   const [selectedCharList, setSelectedCharList] = useState([""]);
   const [selectedActionCardList, setSelectedActionCardList] = useState([""]);
   const router = useRouter();
+  const { deckid } = router.query;
 
   const getCards = async (endPoint, func) => {
     try {
@@ -44,7 +45,7 @@ function Deck({ uid, username, avatar }) {
         const resp = await axios.put("/decks", {
           characters: selectedCharList,
           actionCards: selectedActionCardList,
-          deckid: 1,
+          deckid: deckid,
           uid: uid,
         });
         alert(resp.data);

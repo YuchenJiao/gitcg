@@ -8,15 +8,35 @@ import { genMongoToken } from "@/helpers/genMongoToken";
 export default withSessionRoute(handler);
 
 async function handler(req, res) {
+  const token = genMongoToken("users");
+  const client = await MongoClient.connect(token);
+  const db = client.db();
+  const collection = db.collection("decks");
   if (req.method === "GET") {
     // get saved deck
+    const { deckid, uid } = req.query;
+    if (deckid) {
+      const result = await collection.findOne({ uid: uid, deckid: deckid });
+      if (result) {
+        const charList = Array.from(result.characters);
+        const cardList = Array.from(result.actionCards);
+        res.status(200).json({ charList: charList, cardList: cardList });
+      } else {
+        res.status(404).json("Card deck not found");
+      }
+      client.close();
+    } else {
+      const result = await collection.find({ uid: uid }).toArray();
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json("Card deck not found");
+      }
+      client.close();
+    }
   } else if (req.method === "PUT") {
     // post new deck or edit existing deck
-    const token = genMongoToken("users");
     try {
-      const client = await MongoClient.connect(token);
-      const db = client.db();
-      const collection = db.collection("decks");
       const { characters, actionCards, deckid, uid } = req.body;
       const result = await collection.updateOne(
         { uid: uid, deckid: deckid },
