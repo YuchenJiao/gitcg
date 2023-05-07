@@ -5,7 +5,7 @@ import { Pagination } from "swiper";
 import PropTypes from "prop-types";
 import styles from "@/styles/CardSlide.module.css";
 import cardStyles from "@/styles/Card.module.css";
-import Card from "@/components/deckPage/Card";
+import Card from "@/components/deckDetail/Card";
 import { useState } from "react";
 
 export default CardSlide;
