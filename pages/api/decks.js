@@ -20,25 +20,24 @@ async function handler(req, res) {
     if (req.method === "GET") {
       // get saved deck
       const { deckid, uid } = req.query;
-      if (deckid) {
-        const result = await collection.findOne({ uid: uid, deckid: deckid });
-        if (result) {
-          const charList = Array.from(result.characters);
-          const cardList = Array.from(result.actionCards);
-          res.status(200).json({ charList: charList, cardList: cardList });
-        } else {
-          res.status(404).json("Card deck not found");
-        }
-        client.close();
+      const allDecks = await collection.find({ uid: uid }).toArray();
+      if (!allDecks) {
+        res.status(404).json("User info not found");
       } else {
-        const result = await collection.find({ uid: uid }).toArray();
-        if (result) {
-          res.status(200).json(result);
+        if (!deckid) {
+          res.status(200).json(allDecks);
         } else {
-          res.status(404).json("Card deck not found");
+          let deck = null;
+          allDecks.some((elmt) => {
+            if (elmt.deckid === deckid) {
+              deck = elmt;
+            }
+            return elmt.deckid === deckid;
+          });
+          res.status(200).json(deck);
         }
-        client.close();
       }
+      client.close();
     } else if (req.method === "PUT") {
       // post new deck or edit existing deck
       try {

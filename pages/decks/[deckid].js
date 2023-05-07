@@ -30,6 +30,22 @@ function Deck({ uid, username, avatar }) {
     }
   };
 
+  const getDeck = async () => {
+    try {
+      const resp = await axios.get("/decks", {
+        params: { uid: uid, deckid: deckid },
+      });
+      const deckList = resp.data;
+      console.log(deckList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDeck();
+  }, []);
+
   useEffect(() => {
     getCards("/characters", setCharList);
     getCards("/actionCards", setActionCardList);
