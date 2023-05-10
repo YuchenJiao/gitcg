@@ -67,17 +67,30 @@ async function handler(req, res) {
           },
           { upsert: true }
         );
-        client.close();
         if (result) {
           res.status(200).json("deck updated successfully");
         } else {
           res.status(204).json("No content");
         }
+        client.close();
       } catch (error) {
-        res.status(500).json("Error");
+        res.status(500).json(error);
       }
     } else if (req.method === "DELETE") {
       // delect deck
+      try {
+        const { uid, deckid } = req.query;
+        console.log(uid, deckid);
+        const result = await collection.deleteOne({ uid: uid, deckid: deckid });
+        if (result.acknowledged) {
+          res.status(200).json("Delete deck successfully");
+        } else {
+          res.status(404).json("UID and Deckid not found");
+        }
+        client.close();
+      } catch (error) {
+        res.status(500).json(error);
+      }
     }
   }
 }

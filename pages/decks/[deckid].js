@@ -73,7 +73,22 @@ function Deck({ uid, username, avatar }) {
     router.push("/decks");
   };
 
-  const onDelete = async () => {};
+  const onDelete = async () => {
+    try {
+      const resp = await axios.delete("/decks", {
+        params: {
+          uid: uid,
+          deckid: deckid,
+        },
+      });
+      alert(resp.data);
+      if (resp.status === 200) {
+        router.push("/decks");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
