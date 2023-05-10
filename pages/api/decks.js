@@ -24,7 +24,12 @@ async function handler(req, res) {
         res.status(404).json("User info not found");
       } else {
         if (!deckid) {
-          res.status(200).json(allDecks);
+          const activeDeck = await collection.findOne({
+            uid: uid,
+            isActive: true,
+          });
+          const activeIdx = activeDeck ? activeDeck.deckid : -1;
+          res.status(200).json({ decks: allDecks, activeIdx: activeIdx });
         } else {
           let deck = null;
           allDecks.some((elmt) => {
@@ -54,22 +59,49 @@ async function handler(req, res) {
       // post new deck or edit existing deck
       try {
         const { characters, actionCards, deckid, uid } = req.body;
-        const result = await collection.updateOne(
-          { uid: uid, deckid: deckid },
-          {
-            $set: {
-              uid: uid,
-              deckid: deckid,
-              characters: characters,
-              actionCards: actionCards,
+        if (characters && actionCards) {
+          const result = await collection.updateOne(
+            { uid: uid, deckid: deckid },
+            {
+              $set: {
+                characters: characters,
+                actionCards: actionCards,
+              },
             },
-          },
-          { upsert: true }
-        );
-        if (result) {
-          res.status(200).json("deck updated successfully");
+            { upsert: true }
+          );
+          if (result) {
+            res.status(200).json("Deck updated successfully");
+          } else {
+            res.status(204).json("No content");
+          }
         } else {
-          res.status(204).json("No content");
+          const result1 = await collection.updateOne(
+            { uid: uid, isActive: true },
+            { $set: { isActive: false } }
+          );
+          const result2 = await collection.findOne({
+            uid: uid,
+            deckid: deckid,
+          });
+          const result3 = await collection.updateOne(
+            { uid: uid, deckid: deckid },
+            {
+              $set: {
+                uid: uid,
+                deckid: deckid,
+                characters: result2.characters,
+                actionCards: result2.actionCards,
+                isActive: true,
+              },
+            },
+            { upsert: true }
+          );
+          if (result1 && result2 && result3) {
+            res.status(200).json("Deck updated successfully");
+          } else {
+            res.status(204).json("No content");
+          }
         }
         client.close();
       } catch (error) {

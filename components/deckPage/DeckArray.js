@@ -20,14 +20,16 @@ function DeckArray({ length, defaultName, size, uid }) {
       return false;
     })
   );
-  // const [show, setShow] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(-1);
 
   const getDecks = async () => {
     try {
       const resp = await axios.get("/decks", {
         params: { uid: uid },
       });
-      const userDeck = Array.from(resp.data);
+      const userDeck = Array.from(resp.data.decks);
+      const idx = Number(resp.data.activeIdx);
+      setActiveIdx(idx);
       let newArr = [...decks];
       userDeck.forEach(({ deckid, characters }) => {
         newArr[deckid - 1] = characters;
@@ -69,7 +71,14 @@ function DeckArray({ length, defaultName, size, uid }) {
         } else {
           return (
             <div key={idx} className={`${styles.container}`}>
-              <Deck size={size} content={n} name={`Deck ${idx + 1}`}></Deck>
+              <Deck
+                size={size}
+                content={n}
+                name={`Deck ${idx + 1}`}
+                isActive={idx + 1 === activeIdx}
+                uid={uid}
+                deckid={(idx + 1).toString()}
+              ></Deck>
             </div>
           );
         }
