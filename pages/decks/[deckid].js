@@ -51,7 +51,7 @@ function Deck({ uid, username, avatar }) {
     refreshCount();
     if (selectedChar !== 3 || selectedActionCard !== 30) {
       alert(
-        "Please select 3 characters and 30 action cards to complete your deck"
+        "Need 3 characters and 30 action cards, after selection, click save again"
       );
     } else {
       try {

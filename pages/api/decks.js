@@ -80,7 +80,6 @@ async function handler(req, res) {
       // delect deck
       try {
         const { uid, deckid } = req.query;
-        console.log(uid, deckid);
         const result = await collection.deleteOne({ uid: uid, deckid: deckid });
         if (result.acknowledged) {
           res.status(200).json("Delete deck successfully");
