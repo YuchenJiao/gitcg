@@ -7,7 +7,7 @@ import styles from "@/styles/buildDeck.module.css";
 import cardStyles from "@/styles/Card.module.css";
 import CardSlide from "@/components/deckDetail/CardSlide";
 import axios from "@/axios/custom";
-import { countChar } from "@/helpers/countChar";
+import { countCharacterCard } from "@/helpers/countCharacterCard";
 import { countActionCard } from "@/helpers/countActionCard";
 
 export default Deck;
@@ -39,7 +39,7 @@ function Deck({ uid, username, avatar }) {
   }, []);
 
   const refreshCount = () => {
-    const result1 = countChar();
+    const result1 = countCharacterCard();
     setSelectedChar(result1.num);
     setSelectedCharList(result1.list);
     const result2 = countActionCard();

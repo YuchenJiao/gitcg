@@ -8,7 +8,7 @@ import cardStyles from "@/styles/Card.module.css";
 import Card from "@/components/deckDetail/Card";
 import { useState, useEffect } from "react";
 import axios from "@/axios/custom";
-import { refreshCount } from "@/helpers/refreshCount";
+import { countCard } from "@/helpers/countCard";
 
 export default CardSlide;
 
@@ -28,7 +28,7 @@ function CardSlide({
   const [selectedList, setSelectedList] = useState(list);
 
   const refresh = () => {
-    const result = refreshCount(type);
+    const result = countCard(type);
     setCardNum(result.num);
     setNum(result.num);
     setSelectedList(result.list);

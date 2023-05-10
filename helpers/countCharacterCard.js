@@ -1,6 +1,6 @@
 import cardStyles from "@/styles/Card.module.css";
 
-export function countChar() {
+export function countCharacterCard() {
   const charNum = document.querySelectorAll(
     `.${cardStyles.selected_char}`
   ).length;

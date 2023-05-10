@@ -1,10 +1,10 @@
 import { countActionCard } from "./countActionCard";
-import { countChar } from "./countChar";
+import { countCharacterCard } from "./countCharacterCard";
 
-export function refreshCount(type) {
+export function countCard(type) {
   switch (type) {
     case "characterCard":
-      return countChar();
+      return countCharacterCard();
     case "actionCard":
       return countActionCard();
   }
