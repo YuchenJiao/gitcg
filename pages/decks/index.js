@@ -13,7 +13,7 @@ function Decks({ uid, username, avatar }) {
       <SideBar username={username} avatarImg={avatarImg}></SideBar>
       <DeckArray
         length={8}
-        defaultName={"Create New Deck"}
+        defaultName={"New Deck"}
         size={150}
         uid={uid}
       ></DeckArray>

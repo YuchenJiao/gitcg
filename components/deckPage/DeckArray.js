@@ -44,30 +44,39 @@ function DeckArray({ length, defaultName, size, uid }) {
       {decks.map((n, idx) => {
         if (n === 0) {
           return (
-            <div
-              key={idx}
-              className={`${styles.container}`}
-              onClick={() => {
-                toBuild(idx + 1);
-              }}
-            >
-              <BsBookmarkPlus
-                size={size}
-                className={`${styles.deck}`}
-              ></BsBookmarkPlus>
-              <p>{defaultName}</p>
+            <div key={idx} className={`${styles.container}`}>
+              <div
+                className={`${styles.container}`}
+                onClick={() => {
+                  toBuild(idx + 1);
+                }}
+              >
+                <BsBookmarkPlus
+                  size={size}
+                  className={`${styles.deck}`}
+                ></BsBookmarkPlus>
+              </div>
+              <p className={`${styles.default_name}`}>{defaultName}</p>
             </div>
           );
         } else {
           return (
-            <div
-              key={idx}
-              className={`${styles.container}`}
-              onClick={() => {
-                toBuild(idx + 1);
-              }}
-            >
-              <Deck size={size} content={n}></Deck>
+            <div key={idx} className={`${styles.container}`}>
+              <div
+                className={`${styles.container}`}
+                onClick={() => {
+                  toBuild(idx + 1);
+                }}
+              >
+                <Deck size={size} content={n}></Deck>
+              </div>
+              <p
+                onClick={() => {
+                  console.log("!!!");
+                }}
+              >
+                Deck {idx + 1}
+              </p>
             </div>
           );
         }
