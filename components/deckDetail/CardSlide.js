@@ -55,7 +55,7 @@ function CardSlide({
   }, []);
 
   return (
-    <div onClick={refresh}>
+    <div onMouseOver={refresh}>
       <p>
         {cardNum}/{max}
       </p>

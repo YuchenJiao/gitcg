@@ -3,7 +3,6 @@ import { withSessionRoute } from "@/lib/config/withSession";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { authenticate } from "@/helpers/authenticate";
 
-// export default handler;
 export default withSessionRoute(handler);
 
 async function handler(req, res) {

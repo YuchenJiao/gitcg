@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SideBar from "@/components/mainPage/SideBar";
 import styles from "@/styles/buildDeck.module.css";
-import cardStyles from "@/styles/Card.module.css";
 import CardSlide from "@/components/deckDetail/CardSlide";
 import axios from "@/axios/custom";
 import { countCharacterCard } from "@/helpers/countCharacterCard";

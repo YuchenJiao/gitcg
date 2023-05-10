@@ -5,7 +5,6 @@ import { authenticate } from "@/helpers/authenticate";
 // import path from "path";
 // import { promises as fs } from "fs";
 
-// export default handler;
 export default withSessionRoute(handler);
 
 async function handler(req, res) {

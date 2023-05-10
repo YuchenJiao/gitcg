@@ -10,10 +10,17 @@ export default DeckArray;
 
 function DeckArray({ length, defaultName, size, uid }) {
   const router = useRouter();
-  const arr = [...Array(length)].map(() => {
-    return 0;
-  });
-  const [decks, setDecks] = useState(arr);
+  const [decks, setDecks] = useState(
+    [...Array(length)].map(() => {
+      return 0;
+    })
+  );
+  const [show, setShow] = useState(
+    [...Array(length)].map(() => {
+      return false;
+    })
+  );
+  // const [show, setShow] = useState(false);
 
   const getDecks = async () => {
     try {
@@ -46,7 +53,7 @@ function DeckArray({ length, defaultName, size, uid }) {
           return (
             <div key={idx} className={`${styles.container}`}>
               <div
-                className={`${styles.container}`}
+                className={`${styles.inner_container}`}
                 onClick={() => {
                   toBuild(idx + 1);
                 }}
@@ -62,21 +69,7 @@ function DeckArray({ length, defaultName, size, uid }) {
         } else {
           return (
             <div key={idx} className={`${styles.container}`}>
-              <div
-                className={`${styles.container}`}
-                onClick={() => {
-                  toBuild(idx + 1);
-                }}
-              >
-                <Deck size={size} content={n}></Deck>
-              </div>
-              <p
-                onClick={() => {
-                  console.log("!!!");
-                }}
-              >
-                Deck {idx + 1}
-              </p>
+              <Deck size={size} content={n} name={`Deck ${idx + 1}`}></Deck>
             </div>
           );
         }
@@ -86,7 +79,6 @@ function DeckArray({ length, defaultName, size, uid }) {
 }
 
 DeckArray.propTypes = {
-  // deckList: PropTypes.arrayOf(PropTypes.string).isRequired,
   length: PropTypes.number.isRequired,
   defaultName: PropTypes.string,
   size: PropTypes.number.isRequired,

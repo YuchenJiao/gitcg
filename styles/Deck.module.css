@@ -20,6 +20,9 @@
   width: 150px;
   z-index: 100;
 }
+.deck_container:hover {
+  cursor: pointer;
+}
 .first {
   right: 50%;
   z-index: 20;
@@ -29,4 +32,27 @@
 }
 .third {
   left: 50%;
+}
+.drop {
+  cursor: pointer;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown_content {
+  display: none;
+  position: absolute;
+  background-color: transparent;
+  overflow: auto;
+  z-index: 1;
+  align-items: center;
+}
+.show {
+  display: block;
+}
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
