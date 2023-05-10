@@ -11,7 +11,7 @@ import {
 
 export default Card;
 
-function Card({ img, type }) {
+function Card({ img, type, flags }) {
   const refImg = useRef();
   const refFirstChar = useRef();
   const refSecondChar = useRef();
@@ -81,13 +81,25 @@ function Card({ img, type }) {
     }
   };
 
+  const imgClass = flags[0]
+    ? type === "characterCard"
+      ? `${styles.selected_char}`
+      : `${styles.selected_action}`
+    : null;
+
+  const firstCharClass = flags[1] ? null : `${styles.hidden}`;
+  const secondCharClass = flags[2] ? null : `${styles.hidden}`;
+  const thirdCharClass = flags[3] ? null : `${styles.hidden}`;
+  const oneCardClass = flags[4] ? null : `${styles.hidden}`;
+  const twoCardsClass = flags[5] ? null : `${styles.hidden}`;
+
   return (
     <div className={`${styles.card_wrapper}`}>
       <img
         id={img}
         src={img}
         alt={img}
-        className={`${styles.card_img}`}
+        className={`${styles.card_img} ${imgClass}`}
         ref={refImg}
         onClick={() => {
           switch (type) {
@@ -104,27 +116,27 @@ function Card({ img, type }) {
       {/* Filled circle for character order */}
       <div
         ref={refFirstChar}
-        className={`${styles.char_first} ${styles.hidden}`}
+        className={`${styles.char_first} ${firstCharClass}`}
       >
         <Bs1CircleFill size={25}></Bs1CircleFill>
       </div>
       <div
         ref={refSecondChar}
-        className={`${styles.char_second} ${styles.hidden}`}
+        className={`${styles.char_second} ${secondCharClass}`}
       >
         <Bs2CircleFill size={25}></Bs2CircleFill>
       </div>
       <div
         ref={refThirdChar}
-        className={`${styles.char_third} ${styles.hidden}`}
+        className={`${styles.char_third} ${thirdCharClass}`}
       >
         <Bs3CircleFill size={25}></Bs3CircleFill>
       </div>
       {/* Empty square for numner of card */}
-      <div ref={refAddOne} className={`${styles.num_one} ${styles.hidden}`}>
+      <div ref={refAddOne} className={`${styles.num_one} ${oneCardClass}`}>
         <Bs1Square size={25}></Bs1Square>
       </div>
-      <div ref={refAddTwo} className={`${styles.num_two} ${styles.hidden}`}>
+      <div ref={refAddTwo} className={`${styles.num_two} ${twoCardsClass}`}>
         <Bs2Square size={25}></Bs2Square>
       </div>
     </div>
@@ -134,4 +146,5 @@ function Card({ img, type }) {
 Card.propTypes = {
   img: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  flags: PropTypes.arrayOf(PropTypes.bool),
 };

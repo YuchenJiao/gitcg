@@ -17,10 +17,6 @@ function DeckArray({ length, defaultName, size, uid }) {
 
   const getDecks = async () => {
     try {
-      // const resp = await axios.get("/decks", {
-      //   params: { deckid: 1, uid: uid },
-      // });
-      // console.log(resp.data);
       const resp = await axios.get("/decks", {
         params: { uid: uid },
       });

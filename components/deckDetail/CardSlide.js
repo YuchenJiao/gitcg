@@ -6,7 +6,8 @@ import PropTypes from "prop-types";
 import styles from "@/styles/CardSlide.module.css";
 import cardStyles from "@/styles/Card.module.css";
 import Card from "@/components/deckDetail/Card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "@/axios/custom";
 
 export default CardSlide;
 
@@ -19,6 +20,8 @@ function CardSlide({
   setNum,
   list,
   setList,
+  uid,
+  deckid,
 }) {
   const [cardNum, setCardNum] = useState(selected);
   const [selectedList, setSelectedList] = useState(list);
@@ -54,12 +57,16 @@ function CardSlide({
             ).length;
         setCardNum(actionCardNum);
         setNum(actionCardNum);
-        const singleCards = Array.from(document.querySelectorAll(
-          `.${cardStyles.num_one}:not(.${cardStyles.hidden})`
-        ));
-        const doubleCards = Array.from(document.querySelectorAll(
-          `.${cardStyles.num_two}:not(.${cardStyles.hidden})`
-        ));
+        const singleCards = Array.from(
+          document.querySelectorAll(
+            `.${cardStyles.num_one}:not(.${cardStyles.hidden})`
+          )
+        );
+        const doubleCards = Array.from(
+          document.querySelectorAll(
+            `.${cardStyles.num_two}:not(.${cardStyles.hidden})`
+          )
+        );
         let selectedCardList = [];
         singleCards.forEach((ref) => {
           selectedCardList.push(ref?.parentElement?.childNodes[0]?.id);
@@ -75,6 +82,30 @@ function CardSlide({
     }
   };
 
+  const getDeck = async () => {
+    try {
+      const resp = await axios.get("/decks", {
+        params: { uid: uid, deckid: deckid },
+      });
+      const deckList = resp.data;
+      if (deckList) {
+        if (type === "characterCard") {
+          setCardNum(3);
+          setSelectedList(deckList.characters);
+        } else if (type === "actionCard") {
+          setCardNum(30);
+          setSelectedList(deckList.actionCards);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDeck();
+  }, []);
+
   return (
     <div onClick={refreshCount}>
       <p>
@@ -89,9 +120,34 @@ function CardSlide({
         className={`${styles.swiper} mySwiper`}
       >
         {imgList.map((img, idx) => {
+          const loc = selectedList.indexOf(img);
+          let flags = [false, false, false, false, false, false];
+          if (loc !== -1) {
+            if (type === "characterCard") {
+              switch (loc) {
+                case 0:
+                  flags = [true, true, false, false, false, false];
+                  break;
+                case 1:
+                  flags = [true, false, true, false, false, false];
+                  break;
+                default:
+                  flags = [true, false, false, true, false, false];
+              }
+            } else if (type === "actionCard") {
+              if (
+                loc === selectedList.length - 1 ||
+                selectedList[loc + 1] !== selectedList[loc]
+              ) {
+                flags = [true, false, false, false, true, false];
+              } else {
+                flags = [true, false, false, false, false, true];
+              }
+            }
+          }
           return (
             <SwiperSlide key={idx} className={`${styles.swiper_slide}`}>
-              <Card img={img} type={type}></Card>
+              <Card img={img} type={type} flags={flags}></Card>
             </SwiperSlide>
           );
         })}

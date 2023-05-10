@@ -15,8 +15,8 @@ function Deck({ uid, username, avatar }) {
   const [actionCardList, setActionCardList] = useState([]);
   const [selectedChar, setSelectedChar] = useState(0);
   const [selectedActionCard, setSelectedActionCard] = useState(0);
-  const [selectedCharList, setSelectedCharList] = useState([""]);
-  const [selectedActionCardList, setSelectedActionCardList] = useState([""]);
+  const [selectedCharList, setSelectedCharList] = useState([]);
+  const [selectedActionCardList, setSelectedActionCardList] = useState([]);
   const router = useRouter();
   const { deckid } = router.query;
 
@@ -29,22 +29,6 @@ function Deck({ uid, username, avatar }) {
       console.log(error.response.data);
     }
   };
-
-  const getDeck = async () => {
-    try {
-      const resp = await axios.get("/decks", {
-        params: { uid: uid, deckid: deckid },
-      });
-      const deckList = resp.data;
-      console.log(deckList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getDeck();
-  }, []);
 
   useEffect(() => {
     getCards("/characters", setCharList);
@@ -91,6 +75,8 @@ function Deck({ uid, username, avatar }) {
           setNum={setSelectedChar}
           list={selectedCharList}
           setList={setSelectedCharList}
+          uid={uid}
+          deckid={deckid}
         ></CardSlide>
       </div>
       <div className={`${styles.slide_row}`}>
@@ -103,6 +89,8 @@ function Deck({ uid, username, avatar }) {
           setNum={setSelectedActionCard}
           list={selectedActionCardList}
           setList={setSelectedActionCardList}
+          uid={uid}
+          deckid={deckid}
         ></CardSlide>
       </div>
       <div className={`${styles.button_row}`}>
