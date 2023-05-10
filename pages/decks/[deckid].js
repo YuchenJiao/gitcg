@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SideBar from "@/components/mainPage/SideBar";
 import styles from "@/styles/buildDeck.module.css";
+import cardStyles from "@/styles/Card.module.css";
 import CardSlide from "@/components/deckDetail/CardSlide";
 import axios from "@/axios/custom";
+import { countChar } from "@/helpers/countChar";
+import { countActionCard } from "@/helpers/countActionCard";
 
 export default Deck;
 
@@ -35,7 +38,17 @@ function Deck({ uid, username, avatar }) {
     getCards("/actionCards", setActionCardList);
   }, []);
 
+  const refreshCount = () => {
+    const result1 = countChar();
+    setSelectedChar(result1.num);
+    setSelectedCharList(result1.list);
+    const result2 = countActionCard();
+    setSelectedActionCard(result2.num);
+    setSelectedActionCardList(result2.list);
+  };
+
   const onSave = async () => {
+    refreshCount();
     if (selectedChar !== 3 || selectedActionCard !== 30) {
       alert(
         "Please select 3 characters and 30 action cards to complete your deck"
