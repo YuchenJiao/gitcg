@@ -19,7 +19,7 @@ async function handler(req, res) {
     const collection = db.collection("decks");
     if (req.method === "GET") {
       // get saved deck
-      const { deckid, uid } = req.query;
+      const { uid, deckid, type } = req.query;
       const allDecks = await collection.find({ uid: uid }).toArray();
       if (!allDecks) {
         res.status(404).json("User info not found");
@@ -34,7 +34,20 @@ async function handler(req, res) {
             }
             return elmt.deckid === deckid;
           });
-          res.status(200).json(deck);
+          if (deck) {
+            switch (type) {
+              case "characterCard":
+                res.status(200).json(deck.characters);
+                break;
+              case "actionCard":
+                res.status(200).json(deck.actionCards);
+                break;
+              default:
+                res.status(404).json("Card type not found");
+            }
+          } else {
+            res.status(200).json(deck);
+          }
         }
       }
       client.close();

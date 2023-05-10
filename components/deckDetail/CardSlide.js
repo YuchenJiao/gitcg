@@ -38,17 +38,12 @@ function CardSlide({
   const getDeck = async () => {
     try {
       const resp = await axios.get("/decks", {
-        params: { uid: uid, deckid: deckid },
+        params: { uid: uid, deckid: deckid, type: type },
       });
-      const deckList = resp.data;
-      if (deckList) {
-        if (type === "characterCard") {
-          setCardNum(3);
-          setSelectedList(deckList.characters);
-        } else if (type === "actionCard") {
-          setCardNum(30);
-          setSelectedList(deckList.actionCards);
-        }
+      const deck = resp.data;
+      if (deck) {
+        setCardNum(deck.length);
+        setSelectedList(deck);
       }
     } catch (error) {
       console.log(error);
