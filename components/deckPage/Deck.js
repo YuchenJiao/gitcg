@@ -11,8 +11,8 @@ export default Deck;
 function Deck({ size, content, name, isActive, uid, deckid }) {
   const [show, setShow] = useState(false);
   const router = useRouter();
-  const height = 171.43;
-  const width = 100;
+  const width = 420;
+  const height = 720;
 
   const setAsActive = async () => {
     try {

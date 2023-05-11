@@ -15,6 +15,7 @@
   position: absolute;
   margin: 0;
   width: 100px;
+  height: auto;
 }
 .deck_container img:hover {
   width: 150px;
