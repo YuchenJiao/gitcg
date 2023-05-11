@@ -2,7 +2,7 @@ import { withSessionSsr } from "lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
 import SideBar from "@/components/mainPage/SideBar";
 import Image from "next/image";
-import styles from "@/styles/homePage.module.css";
+import Head from "next/head";
 import { useMouse } from "primereact/hooks";
 
 export default Home;
@@ -16,6 +16,9 @@ function Home({ uid, username, avatar }) {
 
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       {isOnSideBar() && (
         <SideBar username={username} avatarImg={avatar}></SideBar>
       )}

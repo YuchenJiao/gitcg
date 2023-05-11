@@ -23,6 +23,7 @@
     "react-dom": "latest",
     "react-hook-form": "latest",
     "react-icons": "^4.8.0",
+    "sharp": "^0.32.1",
     "swiper": "^9.2.0",
     "swr": "^2.1.3"
   },
