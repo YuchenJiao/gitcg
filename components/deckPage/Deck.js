@@ -3,11 +3,13 @@ import styles from "@/styles/Deck.module.css";
 import { BsBookmark } from "react-icons/bs";
 import { useState } from "react";
 import axios from "@/axios/custom";
+import { useRouter } from "next/router";
 
 export default Deck;
 
 function Deck({ size, content, name, isActive, uid, deckid }) {
   const [show, setShow] = useState(false);
+  const router = useRouter();
 
   const setAsActive = async () => {
     try {
@@ -15,16 +17,19 @@ function Deck({ size, content, name, isActive, uid, deckid }) {
         uid: uid,
         deckid: deckid,
       });
-      alert(resp.data);
       window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
 
+  const toBuild = () => {
+    router.push(`/decks/${deckid}`);
+  };
+
   return (
     <>
-      <div className={`${styles.deck_container}`}>
+      <div onClick={toBuild} className={`${styles.deck_container}`}>
         <BsBookmark size={size} className={`${styles.deck}`}></BsBookmark>
         <img
           src={content[0]}

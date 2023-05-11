@@ -40,6 +40,10 @@ function SideBar({ username, avatarImg }) {
     }
   };
 
+  const toDuel = () => {
+    alert("Not implemented yet");
+  };
+
   return (
     <nav className={`${styles.sidebar} d-lg-block collapse bg-white`}>
       <div className={`${styles.center}`}>
@@ -64,6 +68,11 @@ function SideBar({ username, avatarImg }) {
           <div className="list-group-item">
             <button onClick={toDeckPage} className="btn btn-primary">
               decks
+            </button>
+          </div>
+          <div className="list-group-item">
+            <button onClick={toDuel} className="btn btn-primary">
+              DUEL !
             </button>
           </div>
           <div className="list-group-item">
