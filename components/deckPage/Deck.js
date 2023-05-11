@@ -4,15 +4,11 @@ import { BsBookmark } from "react-icons/bs";
 import { useState } from "react";
 import axios from "@/axios/custom";
 import { useRouter } from "next/router";
-import Image from "next/image";
-
 export default Deck;
 
 function Deck({ size, content, name, isActive, uid, deckid }) {
   const [show, setShow] = useState(false);
   const router = useRouter();
-  const height = 171.43;
-  const width = 100;
 
   const setAsActive = async () => {
     try {
@@ -34,27 +30,21 @@ function Deck({ size, content, name, isActive, uid, deckid }) {
     <>
       <div onClick={toBuild} className={`${styles.deck_container}`}>
         <BsBookmark size={size} className={`${styles.deck}`}></BsBookmark>
-        <Image
+        <img
           src={content[0]}
-          width={width}
-          height={height}
           alt={content[0]}
           className={`${styles.first}`}
-        ></Image>
-        <Image
+        ></img>
+        <img
           src={content[1]}
-          width={width}
-          height={height}
           alt={content[1]}
           className={`${styles.second}`}
-        ></Image>
-        <Image
+        ></img>
+        <img
           src={content[2]}
-          width={width}
-          height={height}
           alt={content[2]}
           className={`${styles.third}`}
-        ></Image>
+        ></img>
       </div>
       <div
         onMouseEnter={() => {
