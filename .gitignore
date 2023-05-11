@@ -32,4 +32,4 @@ yarn-error.log*
 .vercel
 
 # iron-session
-/pages/lib/config/
+/lib/config/

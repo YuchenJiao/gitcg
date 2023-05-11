@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { withSessionRoute } from "@/lib/config/withSession";
+import { withSessionRoute } from "lib/config/withSession";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { authenticate } from "@/helpers/authenticate";
 // import path from "path";

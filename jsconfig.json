@@ -5,7 +5,7 @@
       "@/components/*": ["components/*"],
       "@/helpers/*": ["helpers/*"],
       "@/styles/*": ["styles/*"],
-      "@/lib/*": ["pages/lib/*"],
+      "@/lib/*": ["lib/*"],
       "@/axios/*": ["axios/*"]
     }
   }

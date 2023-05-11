@@ -2,12 +2,15 @@ import { useRouter } from "next/router";
 import styles from "styles/SideBar.module.css";
 import axios from "@/axios/custom";
 import { useState } from "react";
+import Image from "next/image";
 
 export default SideBar;
 
 function SideBar({ username, avatarImg }) {
   const router = useRouter();
   const [avatar, setAvatar] = useState(avatarImg);
+  const height = 256;
+  const width = 256;
 
   const logout = async () => {
     try {
@@ -49,13 +52,15 @@ function SideBar({ username, avatarImg }) {
       <div className={`${styles.center}`}>
         <div className={`${styles.center} list-group list-group-flush`}>
           <div className="list-group-item">
-            <img
-              id="avatar"
+            <Image
               src={avatar}
-              alt="avatar"
+              width={width}
+              height={height}
+              alt={"avatar"}
               onClick={getNextAvatar}
+              priority
               className={`${styles.avatar}`}
-            ></img>
+            ></Image>
           </div>
           <div className="list-group-item">
             <p className="h5">{username}</p>

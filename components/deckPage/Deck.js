@@ -40,7 +40,6 @@ function Deck({ size, content, name, isActive, uid, deckid }) {
           height={height}
           alt={content[0]}
           className={`${styles.first}`}
-          unoptimized
         ></Image>
         <Image
           src={content[1]}
@@ -48,7 +47,6 @@ function Deck({ size, content, name, isActive, uid, deckid }) {
           height={height}
           alt={content[1]}
           className={`${styles.second}`}
-          unoptimized
         ></Image>
         <Image
           src={content[2]}
@@ -56,7 +54,6 @@ function Deck({ size, content, name, isActive, uid, deckid }) {
           height={height}
           alt={content[2]}
           className={`${styles.third}`}
-          unoptimized
         ></Image>
       </div>
       <div

@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import { genMongoToken } from "@/helpers/genMongoToken";
-import { withSessionRoute } from "pages/lib/config/withSession";
+import { withSessionRoute } from "lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
 
 export default withSessionRoute(logout);

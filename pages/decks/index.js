@@ -1,4 +1,4 @@
-import { withSessionSsr } from "@/lib/config/withSession";
+import { withSessionSsr } from "lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
 import SideBar from "@/components/mainPage/SideBar";
 import DeckArray from "@/components/deckPage/DeckArray";

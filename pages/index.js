@@ -1,7 +1,8 @@
-import { withSessionSsr } from "@/lib/config/withSession";
+import { withSessionSsr } from "lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
 import SideBar from "@/components/mainPage/SideBar";
 import Image from "next/image";
+import styles from "@/styles/homePage.module.css";
 import { useMouse } from "primereact/hooks";
 
 export default Home;
@@ -18,7 +19,12 @@ function Home({ uid, username, avatar }) {
       {isOnSideBar() && (
         <SideBar username={username} avatarImg={avatar}></SideBar>
       )}
-      <Image src="/background.png" alt="official wallpaper" fill></Image>
+      <Image
+        src="/background.png"
+        alt="official wallpaper"
+        fill
+        priority
+      ></Image>
     </>
   );
 }

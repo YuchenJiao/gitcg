@@ -42,7 +42,7 @@ function DeckArray({ length, defaultName, size, uid }) {
 
   useEffect(() => {
     getDecks();
-  }, []);
+  });
 
   const toBuild = (did) => {
     router.push(`/decks/${did}`);

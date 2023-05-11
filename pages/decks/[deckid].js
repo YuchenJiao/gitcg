@@ -1,4 +1,4 @@
-import { withSessionSsr } from "@/lib/config/withSession";
+import { withSessionSsr } from "lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";

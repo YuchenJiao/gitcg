@@ -1,5 +1,6 @@
 .avatar {
   width: 20vmin;
+  height: auto;
 }
 .center {
   display: flex;

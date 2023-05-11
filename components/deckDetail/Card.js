@@ -8,6 +8,7 @@ import {
   Bs1Square,
   Bs2Square,
 } from "react-icons/bs";
+import Image from "next/image";
 
 export default Card;
 
@@ -18,6 +19,9 @@ function Card({ img, type, flags }) {
   const refThirdChar = useRef();
   const refAddOne = useRef();
   const refAddTwo = useRef();
+
+  const height = 720;
+  const width = 420;
 
   const onSelectChar = () => {
     if (refImg.current.classList.contains(`${styles.selected_char}`)) {
@@ -95,11 +99,14 @@ function Card({ img, type, flags }) {
 
   return (
     <div className={`${styles.card_wrapper}`}>
-      <img
+      <Image
         id={img}
         src={img}
+        height={height}
+        width={width}
         alt={img}
         className={`${styles.card_img} ${imgClass}`}
+        unoptimized
         ref={refImg}
         onClick={() => {
           switch (type) {
@@ -112,7 +119,7 @@ function Card({ img, type, flags }) {
             default:
           }
         }}
-      ></img>
+      ></Image>
       {/* Filled circle for character order */}
       <div
         ref={refFirstChar}

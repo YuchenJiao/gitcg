@@ -52,7 +52,7 @@ function CardSlide({
 
   useEffect(() => {
     getDeck();
-  }, []);
+  });
 
   return (
     <div onMouseOver={refresh}>
