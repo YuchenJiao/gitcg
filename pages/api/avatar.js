@@ -12,7 +12,7 @@ async function handler(req, res) {
     res.status(401).json("Unauthorized");
   } else {
     if (req.method === "POST") {
-      const path = "/img/Avatar/";
+      const path = genS3Img("/img/Avatar/");
       const type = ".png";
       try {
         const token = genMongoToken("genshin_resource");
@@ -27,13 +27,22 @@ async function handler(req, res) {
             path.length,
             current.length - type.length
           );
-          console.log(name);
           const index = list.indexOf(name);
           if (index >= 0) {
             const nextAvatar = path + list[(index + 1) % list.length] + type;
             req.session.user.avatar = nextAvatar;
             await req.session.save();
-            res.status(200).json(genS3Img(nextAvatar));
+            const token2 = genMongoToken("users");
+            const client2 = await MongoClient.connect(token2);
+            const db2 = client2.db();
+            const collection2 = db2.collection("users");
+            const result2 = await collection2.updateOne(
+              { username: req.session.user.username },
+              { $set: { avatar: req.session?.user?.avatar } },
+              { upsert: true }
+            );
+            client2.close();
+            res.status(200).json(nextAvatar);
           } else {
             res.status(404).json("Current avatar not found");
           }

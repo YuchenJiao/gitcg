@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import { genMongoToken } from "@/helpers/genMongoToken";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default handler;
 
@@ -19,7 +20,7 @@ async function handler(req, res) {
         const result = await collection.insertOne({
           username: username,
           password: hash,
-          avatar: "/img/Avatar/jean.png",
+          avatar: genS3Img("/img/Avatar/jean.png"),
         });
         res.status(201).json({
           data: result,

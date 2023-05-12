@@ -2,11 +2,12 @@ import { withSessionSsr } from "lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
 import SideBar from "@/components/mainPage/SideBar";
 import DeckArray from "@/components/deckPage/DeckArray";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default Decks;
 
 function Decks({ uid, username, avatar }) {
-  const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
+  const avatarImg = avatar ? avatar : genS3Img("/img/Avatar/jean.png");
 
   return (
     <>

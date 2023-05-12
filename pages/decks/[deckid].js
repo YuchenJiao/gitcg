@@ -8,11 +8,12 @@ import CardSlide from "@/components/deckDetail/CardSlide";
 import axios from "@/axios/custom";
 import { countCharacterCard } from "@/helpers/countCharacterCard";
 import { countActionCard } from "@/helpers/countActionCard";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default Deck;
 
 function Deck({ uid, username, avatar }) {
-  const avatarImg = avatar ? avatar : "/img/Avatar/jean.png";
+  const avatarImg = avatar ? avatar : genS3Img("/img/Avatar/jean.png");
   const [charList, setCharList] = useState([]);
   const [actionCardList, setActionCardList] = useState([]);
   const [selectedChar, setSelectedChar] = useState(0);

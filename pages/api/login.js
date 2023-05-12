@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { withSessionRoute } from "lib/config/withSession";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default withSessionRoute(handler);
 
@@ -28,7 +29,7 @@ async function handler(req, res) {
         req.session.user = {
           id: result._id.toString(),
           username: result.username,
-          avatar: result.avatar ? result.avatar : "/img/Avatar/jean.png",
+          avatar: result.avatar ? result.avatar : genS3Img("/img/Avatar/jean.png"),
         };
         await req.session.save();
         res.status(200).json({
