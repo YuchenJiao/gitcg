@@ -2,8 +2,7 @@ import { MongoClient } from "mongodb";
 import { withSessionRoute } from "lib/config/withSession";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { authenticate } from "@/helpers/authenticate";
-// import path from "path";
-// import { promises as fs } from "fs";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default withSessionRoute(handler);
 
@@ -21,7 +20,7 @@ async function handler(req, res) {
         const result = await collection.findOne({ name: "character_list" });
         if (result) {
           const path = result.Character.map((char) => {
-            return "/img/Character/" + char + ".png";
+            return genS3Img("/img/Character/" + char + ".png");
           });
           res.status(200).json(path);
         } else {
@@ -30,11 +29,6 @@ async function handler(req, res) {
           });
         }
         client.close();
-
-        /* the version of using local file */
-        // const file = path.join(process.cwd(), "/public/character_list.json");
-        // const content = await fs.readFile(file, "utf8");
-        // res.status(200).json(JSON.stringify(JSON.parse(content).Character));
       } catch (err) {
         res.status(500).json({
           err,

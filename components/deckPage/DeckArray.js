@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styles from "@/styles/DeckArray.module.css";
 import { BsBookmarkPlus } from "react-icons/bs";
 import PropTypes from "prop-types";
@@ -15,34 +16,28 @@ function DeckArray({ length, defaultName, size, uid }) {
       return 0;
     })
   );
-  const [show, setShow] = useState(
-    [...Array(length)].map(() => {
-      return false;
-    })
-  );
   const [activeIdx, setActiveIdx] = useState(-1);
 
-  const getDecks = async () => {
-    try {
-      const resp = await axios.get("/decks", {
-        params: { uid: uid },
-      });
-      const userDeck = Array.from(resp.data.decks);
-      const idx = Number(resp.data.activeIdx);
-      setActiveIdx(idx);
-      let newArr = [...decks];
-      userDeck.forEach(({ deckid, characters }) => {
-        newArr[deckid - 1] = characters;
-      });
-      setDecks(newArr);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    async function getDecks() {
+      try {
+        const resp = await axios.get("/decks", {
+          params: { uid: uid },
+        });
+        const userDeck = Array.from(resp.data.decks);
+        const idx = Number(resp.data.activeIdx);
+        setActiveIdx(idx);
+        let newArr = [...decks];
+        userDeck.forEach(({ deckid, characters }) => {
+          newArr[deckid - 1] = characters;
+        });
+        setDecks(newArr);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     getDecks();
-  });
+  }, []);
 
   const toBuild = (did) => {
     router.push(`/decks/${did}`);

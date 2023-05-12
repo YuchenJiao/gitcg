@@ -2,8 +2,7 @@ import { MongoClient } from "mongodb";
 import { withSessionRoute } from "lib/config/withSession";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { authenticate } from "@/helpers/authenticate";
-// import path from "path";
-// import { promises as fs } from "fs";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default withSessionRoute(handler);
 
@@ -16,6 +15,7 @@ async function handler(req, res) {
     const client = await MongoClient.connect(token);
     const db = client.db();
     const collection = db.collection("decks");
+    const prefix = process.env.S3_DOMAIN;
     if (req.method === "GET") {
       // get saved deck
       const { uid, deckid, type } = req.query;

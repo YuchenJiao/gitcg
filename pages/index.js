@@ -4,15 +4,32 @@ import SideBar from "@/components/mainPage/SideBar";
 import Image from "next/image";
 import Head from "next/head";
 import { useMouse } from "primereact/hooks";
+import { useEffect, useState } from "react";
+import axios from "@/axios/custom";
 
 export default Home;
 
 function Home({ uid, username, avatar }) {
   const { x, y } = useMouse();
+  const [background, setBackground] = useState("");
+  const [favicon, setFavicon] = useState("");
 
   const isOnSideBar = () => {
     return x < 200;
   };
+
+  useEffect(() => {
+    async function getBackground() {
+      try {
+        const resp = await axios.get("/background");
+        const path = resp.data;
+        setBackground(path);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getBackground();
+  }, []);
 
   return (
     <>
@@ -22,12 +39,7 @@ function Home({ uid, username, avatar }) {
       {isOnSideBar() && (
         <SideBar username={username} avatarImg={avatar}></SideBar>
       )}
-      <Image
-        src="/background.png"
-        alt="official wallpaper"
-        fill
-        priority
-      ></Image>
+      <Image src={background} alt="official wallpaper" fill priority></Image>
     </>
   );
 }

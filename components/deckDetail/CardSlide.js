@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import PropTypes from "prop-types";
 import styles from "@/styles/CardSlide.module.css";
-import cardStyles from "@/styles/Card.module.css";
 import Card from "@/components/deckDetail/Card";
 import { useState, useEffect } from "react";
 import axios from "@/axios/custom";
@@ -35,24 +35,23 @@ function CardSlide({
     setList(result.list);
   };
 
-  const getDeck = async () => {
-    try {
-      const resp = await axios.get("/decks", {
-        params: { uid: uid, deckid: deckid, type: type },
-      });
-      const deck = resp.data;
-      if (deck) {
-        setCardNum(deck.length);
-        setSelectedList(deck);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    async function getDeck () {
+      try {
+        const resp = await axios.get("/decks", {
+          params: { uid: uid, deckid: deckid, type: type },
+        });
+        const deck = resp.data;
+        if (deck) {
+          setCardNum(deck.length);
+          setSelectedList(deck);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getDeck();
-  });
+  }, []);
 
   return (
     <div onMouseOver={refresh}>

@@ -22,17 +22,17 @@ function Deck({ uid, username, avatar }) {
   const router = useRouter();
   const { deckid } = router.query;
 
-  const getCards = async (endPoint, func) => {
-    try {
-      const resp = await axios.get(endPoint);
-      const content = resp.data;
-      func(Array.from(content));
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  };
-
   useEffect(() => {
+    async function getCards(endPoint, func) {
+      try {
+        const resp = await axios.get(endPoint);
+        const content = resp.data;
+        func(Array.from(content));
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    }
+
     getCards("/characters", setCharList);
     getCards("/actionCards", setActionCardList);
   }, []);

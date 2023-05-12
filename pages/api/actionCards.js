@@ -3,8 +3,7 @@ import { withSessionRoute } from "lib/config/withSession";
 import { json2Str } from "@/helpers/json2Str";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { authenticate } from "@/helpers/authenticate";
-// import path from "path";
-// import { promises as fs } from "fs";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default withSessionRoute(handler);
 
@@ -29,7 +28,7 @@ async function handler(req, res) {
           );
           res.status(200).json(
             content.map((path) => {
-              return "/img/ActionCard" + path;
+              return genS3Img("/img/ActionCard" + path);
             })
           );
         } else {
@@ -38,17 +37,6 @@ async function handler(req, res) {
           });
         }
         client.close();
-
-        /* the version of using local file */
-        // const file = path.join(process.cwd(), "/public/action_card_list.json");
-        // const content = await fs.readFile(file, "utf8");
-        // const obj = JSON.parse(content);
-        // const jsonContent = json2Str(obj).filter(excludeKeqingSkill);
-        // res.status(200).json(
-        //   jsonContent.map((path) => {
-        //     return "/img" + path;
-        //   })
-        // );
       } catch (err) {
         res.status(500).json({
           err,

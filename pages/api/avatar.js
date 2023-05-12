@@ -2,6 +2,7 @@ import { MongoClient } from "mongodb";
 import { withSessionRoute } from "lib/config/withSession";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { authenticate } from "@/helpers/authenticate";
+import { genS3Img } from "@/helpers/genS3Img";
 
 export default withSessionRoute(handler);
 
@@ -26,12 +27,13 @@ async function handler(req, res) {
             path.length,
             current.length - type.length
           );
+          console.log(name);
           const index = list.indexOf(name);
           if (index >= 0) {
             const nextAvatar = path + list[(index + 1) % list.length] + type;
             req.session.user.avatar = nextAvatar;
             await req.session.save();
-            res.status(200).json(nextAvatar);
+            res.status(200).json(genS3Img(nextAvatar));
           } else {
             res.status(404).json("Current avatar not found");
           }
