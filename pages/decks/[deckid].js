@@ -92,7 +92,7 @@ function Deck({ uid, username, avatar }) {
 
   return (
     <>
-      <SideBar username={username} avatarImg={avatarImg}></SideBar>
+      <SideBar uid={uid} username={username} avatarImg={avatarImg}></SideBar>
       <div className={`${styles.slide_row}`}>
         <CardSlide
           viewCount={5}

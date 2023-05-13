@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default SideBar;
 
-function SideBar({ username, avatarImg }) {
+function SideBar({ uid, username, avatarImg }) {
   const router = useRouter();
   const [avatar, setAvatar] = useState(avatarImg);
   const height = 256;
@@ -26,8 +26,17 @@ function SideBar({ username, avatarImg }) {
     router.push("/decks");
   };
 
-  const toHomePage = () => {
-    router.push("/");
+  const toHomePage = async () => {
+    try {
+      const resp = await axios.get("/duel", {
+        params: {
+          uid: uid,
+        },
+      });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getNextAvatar = async () => {
@@ -37,14 +46,14 @@ function SideBar({ username, avatarImg }) {
       });
       const nextAvatar = resp.data;
       setAvatar(nextAvatar);
-      window.location.reload(false);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
 
   const toDuel = () => {
-    alert("Not implemented yet");
+    router.push("/duel");
   };
 
   return (

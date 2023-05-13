@@ -2,7 +2,6 @@ import { MongoClient } from "mongodb";
 import { withSessionRoute } from "lib/config/withSession";
 import { genMongoToken } from "@/helpers/genMongoToken";
 import { authenticate } from "@/helpers/authenticate";
-import { genS3Img } from "@/helpers/genS3Img";
 
 export default withSessionRoute(handler);
 

@@ -37,7 +37,7 @@ function Home({ uid, username, avatar }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       {isOnSideBar() && (
-        <SideBar username={username} avatarImg={avatar}></SideBar>
+        <SideBar uid={uid} username={username} avatarImg={avatar}></SideBar>
       )}
       <Image src={background} alt="official wallpaper" fill priority></Image>
     </>
