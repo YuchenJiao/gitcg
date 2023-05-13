@@ -10,7 +10,7 @@ export default Home;
 
 function Home({ uid, username, avatar }) {
   const { x, y } = useMouse();
-  const [background, setBackground] = useState("");
+  const [background, setBackground] = useState(avatar);
   const [favicon, setFavicon] = useState("");
 
   const isOnSideBar = () => {
@@ -37,7 +37,7 @@ function Home({ uid, username, avatar }) {
       {isOnSideBar() && (
         <SideBar uid={uid} username={username} avatarImg={avatar}></SideBar>
       )}
-      <Image src={background} alt="official wallpaper" fill priority></Image>
+      <Image src={background} alt="official wallpaper" fill></Image>
     </>
   );
 }

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default Duel;
 
 function Duel({ uid, username, avatar }) {
-  const [background, setBackground] = useState("");
+  const [background, setBackground] = useState(avatar);
 
   useEffect(() => {
     async function getBackground() {
@@ -26,7 +26,7 @@ function Duel({ uid, username, avatar }) {
 
   return (
     <>
-      <Image src={background} alt="desk background" fill priority></Image>
+      <Image src={background} alt="desk background" fill></Image>
     </>
   );
 }
