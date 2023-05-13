@@ -2,7 +2,6 @@ import { withSessionSsr } from "lib/config/withSession";
 import { authenticate } from "@/helpers/authenticate";
 import SideBar from "@/components/mainPage/SideBar";
 import Image from "next/image";
-import Head from "next/head";
 import { useMouse } from "primereact/hooks";
 import { useEffect, useState } from "react";
 import axios from "@/axios/custom";
@@ -21,7 +20,9 @@ function Home({ uid, username, avatar }) {
   useEffect(() => {
     async function getBackground() {
       try {
-        const resp = await axios.get("/background");
+        const resp = await axios.get("/background", {
+          params: { page: "homepage" },
+        });
         const path = resp.data;
         setBackground(path);
       } catch (error) {
@@ -33,9 +34,6 @@ function Home({ uid, username, avatar }) {
 
   return (
     <>
-      <Head>
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
       {isOnSideBar() && (
         <SideBar uid={uid} username={username} avatarImg={avatar}></SideBar>
       )}

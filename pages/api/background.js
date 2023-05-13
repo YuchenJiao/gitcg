@@ -10,7 +10,18 @@ async function handler(req, res) {
     res.status(401).json("Unauthorized");
   } else {
     if (req.method === "GET") {
-      res.status(200).json(genS3Img("/background.png"));
+      const { page } = req.query;
+      let path = "";
+      switch (page) {
+        case "homepage":
+          path = "/background.png";
+          break;
+        case "duel":
+          path = "/img/Background/default.png";
+          break;
+        default:
+      }
+      res.status(200).json(genS3Img(path));
     }
   }
 }

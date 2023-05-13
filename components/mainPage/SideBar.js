@@ -27,16 +27,7 @@ function SideBar({ uid, username, avatarImg }) {
   };
 
   const toHomePage = async () => {
-    try {
-      const resp = await axios.get("/duel", {
-        params: {
-          uid: uid,
-        },
-      });
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
+    router.push("/");
   };
 
   const getNextAvatar = async () => {
@@ -52,8 +43,24 @@ function SideBar({ uid, username, avatarImg }) {
     }
   };
 
-  const toDuel = () => {
-    router.push("/duel");
+  const toDuel = async () => {
+    try {
+      const resp = await axios.get("/decks", {
+        params: {
+          uid: uid,
+          idxOnly: true,
+        },
+      });
+      const deckid = resp.data;
+      if (Number(deckid) > 0) {
+        router.push("/duel");
+      } else {
+        console.log()
+        alert("Please set an active deck frist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -14,10 +14,9 @@ async function handler(req, res) {
     const client = await MongoClient.connect(token);
     const db = client.db();
     const collection = db.collection("decks");
-    const prefix = process.env.S3_DOMAIN;
     if (req.method === "GET") {
       // get saved deck
-      const { uid, deckid, type } = req.query;
+      const { uid, deckid, type, idxOnly } = req.query;
       const allDecks = await collection.find({ uid: uid }).toArray();
       if (!allDecks) {
         res.status(404).json("User info not found");
@@ -28,7 +27,11 @@ async function handler(req, res) {
             isActive: true,
           });
           const activeIdx = activeDeck ? activeDeck.deckid : -1;
-          res.status(200).json({ decks: allDecks, activeIdx: activeIdx });
+          if (!idxOnly) {
+            res.status(200).json({ decks: allDecks, activeIdx: activeIdx });
+          } else {
+            res.status(200).json(activeIdx);
+          }
         } else {
           let deck = null;
           allDecks.some((elmt) => {
