@@ -81,23 +81,23 @@ function SideBar({ uid, username, avatarImg }) {
           <div className="list-group-item">
             <p className="h5">{username}</p>
           </div>
-          <div className="list-group-item">
-            <button onClick={toHomePage} className="btn btn-primary">
+          <div className={`list-group-item ${styles.wrapper}`}>
+            <button onClick={toHomePage} className={`${styles.button} btn btn-primary`}>
               home
             </button>
           </div>
-          <div className="list-group-item">
-            <button onClick={toDeckPage} className="btn btn-primary">
+          <div className={`list-group-item ${styles.wrapper}`}>
+            <button onClick={toDeckPage} className={`${styles.button} btn btn-primary`}>
               decks
             </button>
           </div>
-          <div className="list-group-item">
-            <button onClick={toDuel} className="btn btn-primary">
+          <div className={`list-group-item ${styles.wrapper}`}>
+            <button onClick={toDuel} className={`${styles.button} btn btn-primary`}>
               DUEL !
             </button>
           </div>
-          <div className="list-group-item">
-            <button onClick={logout} className="btn btn-primary">
+          <div className={`list-group-item ${styles.wrapper}`}>
+            <button onClick={logout} className={`${styles.button} btn btn-primary`}>
               logout
             </button>
           </div>

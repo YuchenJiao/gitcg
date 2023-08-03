@@ -18,3 +18,10 @@
   width: 25vmin;
   z-index: 600;
 }
+.button {
+  flex: content;
+  width: 100%;
+}
+.wrapper {
+  width: 20vmin;
+}
